@@ -5,6 +5,7 @@ using UnityEngine;
 public class RootNode : MonoBehaviour
 {
     public List<RootNode> Children;
+    public RootNode       Parent;
 
     private void OnDrawGizmos() {
         foreach (var x in Children)

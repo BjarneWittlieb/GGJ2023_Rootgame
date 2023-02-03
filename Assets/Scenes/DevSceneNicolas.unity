@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 307658134521740053, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: IsTip
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2019861488543651140, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_Name
       value: Node (1)
@@ -156,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.14
+      value: -3.81
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1204,7 +1208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.14
+      value: -3.81
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.z

@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class RootDrawer : MonoBehaviour
@@ -24,7 +21,7 @@ public class RootDrawer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        theMostParentParent.UpdateCurrentLength();
+        //theMostParentParent.UpdateCurrentLength();
         DrawNewTree();
     }
 
@@ -37,12 +34,7 @@ public class RootDrawer : MonoBehaviour
     {
         return rootNode.CurrentLength;
     }
-
-    private float GetWidthOfRootNode(RootNode rootNode)
-    {
-        return Mathf.Log(GetLongestPathLength(rootNode) + 1f) * widthModifier;
-    }
-
+    
     private void DrawRootNode(RootNode rootNode)
     {
         RootNode endNode = FindNextSplitterOrEnd(rootNode);
@@ -66,6 +58,16 @@ public class RootDrawer : MonoBehaviour
         }
     }
 
+    private float GetNewWidthFromBefore(float widthBefore, float additionalLength)
+    {
+        return Mathf.Log(Mathf.Exp(widthBefore) / widthModifier + additionalLength) * widthModifier;
+    }
+
+    private float CalculateWidth(float length)
+    {
+        return -Mathf.Exp(-widthModifier * length) + 1;
+    }
+
     private void DrawBranch(RootNode startNode, RootNode endNode, bool onlyAdjustWidth)
     {
         LineRenderer lineRenderer = endNode.lineRenderer;
@@ -79,29 +81,52 @@ public class RootDrawer : MonoBehaviour
             lineRenderer.positionCount = 0;
         }
 
-        float endWidth = GetWidthOfRootNode(startNode);
-        float startWidth = GetWidthOfRootNode(endNode);
-        lineRenderer.startWidth = startWidth;
-        lineRenderer.endWidth = endWidth;
 
-        Debug.Log($"Start: {startWidth}");
-        Debug.Log($"End: {endWidth}");
-        Debug.Log($"");
-        Debug.Log($"");
+        List<RootNode> nodes = GetBranch(startNode, endNode);
+        List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();
+
+        if (endNode.Children.Any()) {
+            endNode.lengthFromTip = endNode.Children.Max(child => child.lengthFromTip + (endNode.transform.position - child.transform.position).magnitude);
+        } else {
+            endNode.lengthFromTip = 0;
+        }
+
+        startNode.lengthFromTip = endNode.lengthFromTip + GetLengthOfPath(vecs);
+        lineRenderer.startWidth = CalculateWidth(startNode.lengthFromTip);
+        lineRenderer.endWidth = CalculateWidth(endNode.lengthFromTip);
 
         if (onlyAdjustWidth) return;
 
-        List<RootNode> nodes = GetBranch(startNode, endNode);
-        int totalLength = nodes.Count;
+        int totalLength = vecs.Count;
 
         // Only add none added
-        nodes = nodes.Skip(lineRenderer.positionCount).ToList();
-        if (!nodes.Any()) return;
+        //nodes = nodes.Skip(lineRenderer.positionCount).ToList();
+        //if (!nodes.Any()) return;
+
+        if (totalLength == lineRenderer.positionCount)
+            return;
 
         lineRenderer.positionCount = totalLength;
-        for (int i = 0; i < nodes.Count; i++) {
-            lineRenderer.SetPosition(totalLength - nodes.Count + i, nodes[i].transform.position);
+        for (int i = 0; i < vecs.Count; i++) {
+            lineRenderer.SetPosition(i, vecs[i]);
         }
+    }
+
+    private float GetLengthOfPath(List<Vector3> path)
+    {
+        float length = 0;
+        for (int i = 0; i < path.Count - 1; ++i)
+        {
+            length += (path[i] - path[i + 1]).magnitude;
+        }
+        return length;
+    }
+
+    private List<Vector3> GetPositions(RootNode rootNode)
+    {
+        var positions = rootNode.IntermediatePoints.Select(v => new Vector3(v.x, v.y, 0)).ToList();
+        positions.Add(rootNode.transform.position);
+        return positions;
     }
 
     /// <summary>

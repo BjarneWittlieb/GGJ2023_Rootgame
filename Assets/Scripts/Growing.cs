@@ -26,10 +26,6 @@ public class Growing : MonoBehaviour
             split();
         else if (tip.IsTip && node.Children.Count != 0)
             branch();
-
-        if (node.IsDead) {
-            Destroy(this);
-        }
     }
 
     bool distanceToHigh() {
@@ -52,7 +48,7 @@ public class Growing : MonoBehaviour
                 split(node);
         }
     }
-    void branch() {
+    public void branch() {
         var parent = node.Parent;
         parent.Children.Remove(node);
         var newNodeObj = Instantiate(transform.gameObject, null);

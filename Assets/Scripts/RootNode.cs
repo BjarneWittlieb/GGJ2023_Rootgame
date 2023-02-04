@@ -5,17 +5,20 @@ using UnityEngine;
 
 public delegate void VoidCall();
 public class RootNode : MonoBehaviour
-{
+{    
     public List<Vector2> IntermediatePoints; //Between Me and my Parent
     public List<RootNode> Children;
     public RootNode       Parent;
     public VoidCall       OnSplit = () => { };
     public VoidCall       OnDead = () => { };//too much roots around, will not split anymore
     public bool           IsDead = false;
+    public bool           IsBossRoot = false; //Can exists without parent
 
     public LineRenderer lineRenderer;
 
     public float CurrentLength = 0;
+
+    public float lengthFromTip = 0;
 
     public void Start()
     {

@@ -48,9 +48,6 @@ public class RandomWalk : MonoBehaviour {
     {
         if (tip.IsTip && node.Parent)
             walk();        
-        if (node.IsDead) {
-            Destroy(this);
-        }
     }
 
     void walk() {

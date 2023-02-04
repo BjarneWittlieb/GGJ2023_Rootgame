@@ -1,60 +1,32 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
-    [SerializeField]
-    CinemachineVirtualCamera virtualCamera;
-    
-    private float minimum;
-    private float maximum = 15f;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    private readonly         float                    maximumZoom = 15f;
+    private readonly         float                    minimumZoom = 3.5f;
+    private                  float                    zoomSpeed   = 0.4f;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        minimum = virtualCamera.m_Lens.OrthographicSize;
-    }
+    private void Start() { }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.mouseScrollDelta.y < 0)
         {
-            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(virtualCamera.m_Lens.OrthographicSize, maximum, Time.deltaTime);
+            var diff = Math.Min(zoomSpeed, maximumZoom - virtualCamera.m_Lens.OrthographicSize);
+            virtualCamera.m_Lens.OrthographicSize += diff;
         }
 
-        if (Input.mouseScrollDelta.y > 0 || Input.GetKey(KeyCode.E))
+        if (Input.mouseScrollDelta.y > 0 )
         {
-            virtualCamera.m_Lens.OrthographicSize += 100f;
-            // StopAllCoroutines();
-            // StartCoroutine(Lerp(virtualCamera.m_Lens.OrthographicSize, minimum));
+            var diff = Math.Min(zoomSpeed, virtualCamera.m_Lens.OrthographicSize - minimumZoom);
+            virtualCamera.m_Lens.OrthographicSize -= diff;
         }
-            
-        
     }
 
-    IEnumerator Lerp(float start, float end)
-    {
-        var t = 0f;
-
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        // while (virtualCamera.m_Lens.OrthographicSize != end)
-        // {
-        //     virtualCamera.m_Lens.OrthographicSize =  Mathf.Lerp(start, end, t);
-        //     t                                     += Time.deltaTime;
-        //     yield return null;
-        // }
-
-        for (int i = 0; i < 20; i++)
-        {
-            virtualCamera.m_Lens.OrthographicSize =  Mathf.Lerp(start, end, t);
-            t                                     += Time.deltaTime;
-            yield return null;
-        }
-
-        yield return null;
-    }    
 }

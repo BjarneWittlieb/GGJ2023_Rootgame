@@ -9,8 +9,8 @@ public class CameraMovement : MonoBehaviour
 
     public CameraMovement()
     {
-        keyMoveSpeed = 8f;
-        scrollSpeed  = 8f;
+        keyMoveSpeed = 15f;
+        scrollSpeed  = 15f;
     }
 
     // Start is called before the first frame update

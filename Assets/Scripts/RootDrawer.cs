@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RootDrawer : MonoBehaviour
 {
+    public static float widthModifierStatic = 0f; //hackady hack hack
     public float widthModifier = .005f;
 
     public RootNode theMostParentParent;
@@ -23,6 +24,7 @@ public class RootDrawer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        widthModifierStatic = widthModifier;
         //theMostParentParent.UpdateCurrentLength();
         DrawNewTree();
     }
@@ -108,8 +110,15 @@ public class RootDrawer : MonoBehaviour
         
         if(startNode.rootCirlce) startNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.startWidth * 0.7f;
         if (endNode.rootCirlce) endNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.endWidth * 0.7f;
-        
-        
+
+        {
+            RootNode current = endNode;
+            while(current != startNode) {
+                current.lengthFromTip = endNode.lengthFromTip;
+                current = current.Parent;
+            }
+        }
+
         if (onlyAdjustWidth) return;
 
         int totalLength = vecs.Count;

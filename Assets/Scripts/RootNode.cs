@@ -15,6 +15,7 @@ public class RootNode : MonoBehaviour
     public bool           IsDead = false;
     public bool           IsBossRoot = false; //Can exists without parent
     public GameObject rootCirlce;
+    public GameObject Flower;
 
     public LineRenderer lineRenderer;
 

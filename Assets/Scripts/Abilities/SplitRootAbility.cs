@@ -7,8 +7,8 @@ namespace Abilities
 {
     public class SplitRootAbility : BaseAbility
     {
+
         private NodePicker picker;
-        private bool       aiming;
 
         public void OnEnable()
         {
@@ -22,30 +22,46 @@ namespace Abilities
         public override void Execute(AbilityHolder holder)
         {
             StartCoroutine(Cast());
-            Grow();
         }
 
         public IEnumerator Cast()
         {
-            yield return DrawTarget();
-        }
-
-        public IEnumerator DrawTarget()
-        {
-            var target = picker.PickTarget();
-            yield return null;
-        }
-
-        private void Grow()
-        {
-            var rootTarget = picker.PickTarget();
-            
-            if (rootTarget) 
+            while (true)
             {
-                if (rootTarget.GetComponent<IsRootTip>()) {
-                    rootTarget.GetComponent<IsRootTip>().IsTip                  =  true;
-                    rootTarget.GetComponent<RootNode>().IsDead                  =  false;
-                    rootTarget.GetComponent<RootInfluence>().TipDeadOnInfluence *= 2;
+                var currentTarget = picker.target;
+            
+                // cast on leftclick
+                if (Input.GetMouseButtonDown(0) && currentTarget)
+                {
+                    Split(currentTarget);
+                    break;
+                }
+                
+                if (Input.GetMouseButtonDown(1))
+                {
+                    // cancel on right click
+                    break;
+                }
+            
+                picker.draw = true;
+                yield return null;
+            }
+        }
+
+        // public IEnumerator DrawTarget()
+        // {
+        //     picker.DrawTargetIndicator();
+        //     yield return null;
+        // }
+
+        private void Split(GameObject currentTarget)
+        {
+            if (currentTarget) 
+            {
+                if (currentTarget.GetComponent<IsRootTip>()) {
+                    currentTarget.GetComponent<IsRootTip>().IsTip                  =  true;
+                    currentTarget.GetComponent<RootNode>().IsDead                  =  false;
+                    currentTarget.GetComponent<RootInfluence>().TipDeadOnInfluence *= 2;
                 }
             }
         }

@@ -22,6 +22,6 @@ public class ButtonBehaviour : MonoBehaviour
 
     public void Activate()
     {
-        Debug.Log($"{Button.name} angeklickert.");
+        // Debug.Log($"{Button.name} angeklickert.");
     }
 }

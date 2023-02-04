@@ -23,17 +23,13 @@ public class RootInfluence : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (node.IsDead) {
-            Destroy(this);
-            return;
-        }
         currentInfluence = 0;
         foreach (var x in Physics2D.OverlapCircleAll(transform.position, influenceField.radius))
             if (LayerMask.LayerToName(x.gameObject.layer) == "RootInfluence")
                 currentInfluence++;
 
-        if ((tip.IsTip && currentInfluence > DeadOnInfluence) ||
-            (!tip.IsTip && currentInfluence > TipDeadOnInfluence)
+        if ((tip.IsTip && currentInfluence > TipDeadOnInfluence ) ||
+            (!tip.IsTip && currentInfluence > DeadOnInfluence)
             )
             node.IsDead = true;
     }

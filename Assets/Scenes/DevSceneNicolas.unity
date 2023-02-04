@@ -196,11 +196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7819768559241589492, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: DeadOnInfluence
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7819768559241589492, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: TipDeadOnInfluence
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_RootOrder

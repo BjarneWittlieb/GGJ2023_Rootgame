@@ -20,6 +20,10 @@ public class RandomWalk : MonoBehaviour {
     private float currentDistance = 0;
     private bool isSplitting = false;
 
+
+    float sinceWallIssue;
+    bool hasWallIssue = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,10 +58,19 @@ public class RandomWalk : MonoBehaviour {
             return;
         if (Random.value < progressChance) {
             List<Collider2D> collider = new List<Collider2D>(Physics2D.OverlapPointAll(transform.position,LayerMask.GetMask("Wall")));
-            if (collider.Count == 0)
+            if (collider.Count == 0) {
                 isSplitting = true;
-            else
+                hasWallIssue = false;
+            }
+            else {
                 rotationRange *= 1.01f;
+                if (!hasWallIssue) {
+                    hasWallIssue = true;
+                    sinceWallIssue = Time.time;
+                }
+                else if ((Time.time-sinceWallIssue) > 5)
+                    node.IsDead = true;
+            }
 
         }
         transform.position = getTargetPosition();

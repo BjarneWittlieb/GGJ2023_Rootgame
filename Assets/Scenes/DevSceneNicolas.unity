@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: IsTip
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 307658134521740053, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: SplitDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2019861488543651140, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_Name
       value: Node (1)
@@ -176,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: rotationRange
-      value: 0.4
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: progressChance

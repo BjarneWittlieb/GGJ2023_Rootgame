@@ -17,8 +17,10 @@ public class RandomSplit : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        if (node.IsDead) {
+            Destroy(this);
+        }
         if (!tip.IsTip && !node.IsDead && Random.value < chancheBranch)
             tip.IsTip = true;
     }

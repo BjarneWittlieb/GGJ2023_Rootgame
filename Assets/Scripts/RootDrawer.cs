@@ -73,7 +73,7 @@ public class RootDrawer : MonoBehaviour
 
     private float GetWidthOfRootNode(RootNode rootNode)
     {
-        return Mathf.Log(GetLongestPathLength(rootNode)) * widthModifier;
+        return Mathf.Log(GetLongestPathLength(rootNode) + 1) * widthModifier;
     }
 
     private void DrawRootNode(RootNode rootNode)

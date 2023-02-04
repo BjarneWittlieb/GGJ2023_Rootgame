@@ -55,6 +55,7 @@ MonoBehaviour:
   Children: []
   Parent: {fileID: 0}
   IsDead: 0
+  lineRenderer: {fileID: 0}
 --- !u!58 &2840426397435337252
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInfluence: 0
-  DeadOnInfluence: 50
+  DeadOnInfluence: 25
   influenceField: {fileID: 3011700539194620442}
 --- !u!1 &6904274039984262883
 GameObject:
@@ -157,7 +158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &364753638983613538
 Transform:
   m_ObjectHideFlags: 0

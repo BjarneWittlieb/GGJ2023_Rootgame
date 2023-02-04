@@ -18,7 +18,6 @@ public class RootNode : MonoBehaviour
 
     public void Start()
     {
-        lineRenderer = null;
         CurrentLength = 0;
     }
 

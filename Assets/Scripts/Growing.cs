@@ -70,6 +70,7 @@ public class Growing : MonoBehaviour
         newNode.Parent = parent;
         parent.Children.Add(newNode);
         newNode.Children.Add(Child);
+        newNode.lineRenderer = null;
         Child.Parent = newNode;
         newNode.transform.position = (Child.transform.position + parent.transform.position) / 2;
         node.OnSplit();

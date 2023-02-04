@@ -7,17 +7,22 @@ using UnityEngine;
 public class RandomSplit : MonoBehaviour
 {
     [SerializeField] private float chancheBranch = 0.001f;
+    public float TimeBeforeNewSplit = 5;
 
     private RootNode node;
     private IsRootTip tip;
+    private float sinceExistence;
     // Start is called before the first frame update
     void Start() {
         node = GetComponent<RootNode>();
         tip = GetComponent<IsRootTip>();
+        sinceExistence = Time.time;
     }
 
     // Update is called once per frame
     void FixedUpdate() {
+        if (sinceExistence + TimeBeforeNewSplit > Time.time)
+            return;
         if (node.IsDead) {
             Destroy(this);
         }

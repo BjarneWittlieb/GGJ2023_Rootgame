@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(IsRootTip))]
 public class Growing : MonoBehaviour
 {
+    [SerializeField] private int intemediateSplits = 5;
     private RootNode node;
     private IsRootTip tip;
 
@@ -31,15 +32,24 @@ public class Growing : MonoBehaviour
         }
     }
 
-    bool distanceToHigh(RootNode a, RootNode b) {
-        return (a.transform.position - b.transform.position).magnitude > tip.SplitDistance;
+    bool distanceToHigh() {
+        Vector2 a = getPreviousPos();
+        Vector2 b = node.transform.position;
+
+        if (node.IntermediatePoints.Count > 0)
+            a = node.IntermediatePoints[node.IntermediatePoints.Count - 1];
+
+        return (a - b).magnitude > tip.SplitDistance;
     }
 
     void split() {
         if (node.Parent == null)
             return;
-        if (distanceToHigh(node.Parent, node)) {
-            split(node);
+        if (!childrenIsTip() && distanceToHigh()) {
+            if (node.IntermediatePoints.Count < intemediateSplits)
+                lazySplit();
+            else
+                split(node);
         }
     }
     void branch() {
@@ -52,27 +62,50 @@ public class Growing : MonoBehaviour
         newNode.Children = node.Children;
         foreach (var x in node.Children)
             x.Parent = newNode;
-        newNode.Children.AddRange(node.Children);
         newNode.Parent = parent;
+        newNode.IntermediatePoints = node.IntermediatePoints;
+        node.IntermediatePoints = new List<Vector2>();
         parent.Children.Add(newNode);
+        newNode.Children.Add(node);
         node.Parent = newNode;
         node.Children = new List<RootNode>();
         node.OnSplit();
     }
 
-    void split(RootNode Child) {
-        RootNode parent = Child.Parent;
-        parent.Children.Remove(Child);        
+    void split(RootNode Me) {
+        RootNode parent = Me.Parent;
+        parent.Children.Remove(Me);        
         var newNodeObj = Instantiate(transform.gameObject, null);
         var newNode = newNodeObj.GetComponent<RootNode>();
         newNodeObj.GetComponent<IsRootTip>().IsTip = false;
         newNode.Children = new List<RootNode>();       
         newNode.Parent = parent;
         parent.Children.Add(newNode);
-        newNode.Children.Add(Child);
-        Child.Parent = newNode;
-        newNode.transform.position = (Child.transform.position + parent.transform.position) / 2;
+        newNode.Children.Add(Me);
+        Me.Parent = newNode;
+        newNode.transform.position = (Me.transform.position + getPreviousPos()) / 2;
+        newNode.IntermediatePoints = Me.IntermediatePoints;
+        Me.IntermediatePoints = new List<Vector2>();
+        Me.Children = new List<RootNode>();
+        Me.OnSplit();
+
+    }
+
+    void lazySplit() {        
+        node.IntermediatePoints.Add((transform.position + getPreviousPos()) / 2);
         node.OnSplit();
-        Child.Children = new List<RootNode>();
+    }
+
+    Vector3 getPreviousPos() {
+        if (node.IntermediatePoints.Count > 0)
+            return node.IntermediatePoints[node.IntermediatePoints.Count - 1];
+        return node.Parent.transform.position;
+    }
+
+    bool childrenIsTip() {
+        foreach (var x in node.Children)
+            if (x.GetComponent<IsRootTip>().IsTip)
+                return true;
+        return false;
     }
 }

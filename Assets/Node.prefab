@@ -52,10 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9855e5c206f30d54fbf3caa6def92647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IntermediatePoints: []
   Children: []
   Parent: {fileID: 0}
   IsDead: 0
   lineRenderer: {fileID: 0}
+  CurrentLength: 0
 --- !u!58 &2840426397435337252
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -98,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618afa392abfbb046851443e72d91e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intemediateSplits: 5
 --- !u!114 &7814673752803213274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +117,7 @@ MonoBehaviour:
   rotationRange: 1.547198
   progressChance: 0.05
   gravity: {x: 0, y: -0.03}
+  walkSpeed: 0.05
 --- !u!114 &7667332903276833629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chancheBranch: 0.0001
+  TimeBeforeNewSplit: 5
 --- !u!114 &7819768559241589492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInfluence: 0
-  DeadOnInfluence: 25
+  DeadOnInfluence: 10
+  TipDeadOnInfluence: 30
   influenceField: {fileID: 3011700539194620442}
 --- !u!1 &6904274039984262883
 GameObject:
@@ -273,4 +279,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.72

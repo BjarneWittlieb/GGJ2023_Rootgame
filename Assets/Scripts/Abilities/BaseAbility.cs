@@ -16,6 +16,7 @@ namespace Abilities
         public Image         AbilityIcon;
         [SerializeField] public string        Name;
         [SerializeField] public KeyCode Code;
+        [SerializeField] public AudioSource audio;
 
         public abstract void Execute(AbilityHolder holder);
 
@@ -25,13 +26,7 @@ namespace Abilities
         }
 
         private void CheckCooldown()
-        {
-            if (Input.GetKey(Code) && isCooldown == false)
-            {
-                isCooldown = true;
-                AbilityIcon.fillAmount = 1;
-            }
-
+        { 
             if (isCooldown)
             {
                 AbilityIcon.fillAmount -= 1 / Cooldown * Time.deltaTime;

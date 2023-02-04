@@ -21,10 +21,10 @@ namespace Abilities
 
         public override void Execute(AbilityHolder holder)
         {
-            StartCoroutine(Cast());
+            StartCoroutine(Cast(holder));
         }
 
-        public IEnumerator Cast()
+        public IEnumerator Cast(AbilityHolder holder)
         {
             while (true)
             {
@@ -34,6 +34,9 @@ namespace Abilities
                 if (Input.GetMouseButtonDown(0) && currentTarget)
                 {
                     Split(currentTarget);
+                    audio.Play();
+                    holder.Ability.isCooldown = true;
+                    holder.Ability.AbilityIcon.fillAmount = 1;
                     break;
                 }
                 

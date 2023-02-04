@@ -8,7 +8,7 @@ public class RandomWalk : MonoBehaviour {
     [SerializeField] private float RotationSpeed = 0.1f;
     [SerializeField] private float rotationRange = Mathf.PI / 3;
     [SerializeField] private float progressChance = 0.01f;
-    [SerializeField] private Vector2 gravity = new Vector2(0,-0.1f);
+    public Vector2 gravity = new Vector2(0,-0.1f);
 
     [Range(0.01f,0.99f)]
     [SerializeField] private float walkSpeed = 0.05f;
@@ -33,7 +33,7 @@ public class RandomWalk : MonoBehaviour {
         currentDistance = 0;
         node.OnSplit += splitting;
         if (!node.Parent)
-            return;
+            return; 
     }
 
     void splitting() {

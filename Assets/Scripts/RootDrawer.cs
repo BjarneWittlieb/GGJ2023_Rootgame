@@ -63,11 +63,6 @@ public class RootDrawer : MonoBehaviour
         }
     }
 
-    private float GetNewWidthFromBefore(float widthBefore, float additionalLength)
-    {
-        return Mathf.Log(Mathf.Exp(widthBefore) / widthModifier + additionalLength) * widthModifier;
-    }
-
     private float CalculateWidth(float length)
     {
         return -Mathf.Exp(-widthModifier * length) + 1;
@@ -86,10 +81,13 @@ public class RootDrawer : MonoBehaviour
             lineRenderer.positionCount = 0;
         }
 
-
         List<RootNode> nodes = GetBranch(startNode, endNode);
         List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();
 
+        if (!endNode.Children.Any())
+        {
+            endNode.lengthFromTip = 0;
+        }
         startNode.lengthFromTip = endNode.lengthFromTip + GetLengthOfPath(vecs);
         lineRenderer.startWidth = CalculateWidth(startNode.lengthFromTip);
         lineRenderer.endWidth = CalculateWidth(endNode.lengthFromTip);

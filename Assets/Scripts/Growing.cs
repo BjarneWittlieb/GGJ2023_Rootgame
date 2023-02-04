@@ -50,22 +50,15 @@ public class Growing : MonoBehaviour
     }
     public void branch() {
         var parent = node.Parent;
-        parent.Children.Remove(node);
         var newNodeObj = Instantiate(transform.gameObject, null);
         var newNode = newNodeObj.GetComponent<RootNode>();
         var newTip = newNodeObj.GetComponent<IsRootTip>();
         newTip.IsTip = false;
-        newNode.Children = node.Children;
-        foreach (var x in node.Children)
-            x.Parent = newNode;
-        newNode.Parent = parent;
-        newNode.IntermediatePoints = node.IntermediatePoints;
-        node.IntermediatePoints = new List<Vector2>();
-        parent.Children.Add(newNode);
-        newNode.Children.Add(node);
-        node.Parent = newNode;
-        node.Children = new List<RootNode>();
-        node.OnSplit();
+        node.Children.Add(newNode);
+        newNode.Parent = node;
+        newNode.Children = new List<RootNode>();
+        newNode.IntermediatePoints = new List<Vector2>();
+        newNode.OnSplit();
     }
 
     void split(RootNode Me) {

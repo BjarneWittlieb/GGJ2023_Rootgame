@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInfluence: 0
-  DeadOnInfluence: 10
-  TipDeadOnInfluence: 30
+  DeadOnInfluence: 30
+  TipDeadOnInfluence: 50
   influenceField: {fileID: 3011700539194620442}
 --- !u!1 &6904274039984262883
 GameObject:

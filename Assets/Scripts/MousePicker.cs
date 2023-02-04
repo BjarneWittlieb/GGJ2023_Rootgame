@@ -44,6 +44,14 @@ public class MousePicker : MonoBehaviour
 
         grow();
         rootDestroy();
+        attack();
+    }
+
+    private void attack() {
+        if (rootTarget && Input.GetMouseButtonDown(2)) {
+            if (rootTarget.GetComponent<RootAttack>())
+                rootTarget.GetComponent<RootAttack>().attack(marker.transform.position);
+        }
     }
 
     private void grow() {

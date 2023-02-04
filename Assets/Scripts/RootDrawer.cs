@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,14 +20,18 @@ public class RootDrawer : MonoBehaviour
     void Start()
     {
         DrawNewTree();
+        StartCoroutine(customUpdate());
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        widthModifierStatic = widthModifier;
-        //theMostParentParent.UpdateCurrentLength();
-        DrawNewTree();
+
+    IEnumerator customUpdate() {
+        while (true) {
+            widthModifierStatic = widthModifier;
+            //theMostParentParent.UpdateCurrentLength();
+            DrawNewTree();
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     public void DrawNewTree()

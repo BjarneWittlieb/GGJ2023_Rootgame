@@ -178,6 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f180bfcda869d5418de2616490da2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactEffect: {fileID: 4847857808077694583, guid: 3c81603759251f446b3496ed24bb3d42, type: 3}
+  speed: 0.3
+  maxDistance: 7
 --- !u!1 &6904274039984262883
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &364753638983613538
 Transform:
   m_ObjectHideFlags: 0

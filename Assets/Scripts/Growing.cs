@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(IsRootTip))]
 public class Growing : MonoBehaviour
 {
-    [SerializeField] private float SplitDistance = 2;
-
     private RootNode node;
     private IsRootTip tip;
 
@@ -15,7 +13,7 @@ public class Growing : MonoBehaviour
     void Start()
     {
         node = GetComponent<RootNode>();
-        tip = GetComponent<IsRootTip>();
+        tip  = GetComponent<IsRootTip>();
     }
 
     // Update is called once per frame
@@ -30,7 +28,7 @@ public class Growing : MonoBehaviour
     }
 
     bool distanceToHigh(RootNode a, RootNode b) {
-        return (a.transform.position - b.transform.position).magnitude > SplitDistance;
+        return (a.transform.position - b.transform.position).magnitude > tip.SplitDistance;
     }
 
     void split() {
@@ -45,12 +43,17 @@ public class Growing : MonoBehaviour
         parent.Children.Remove(node);
         var newNodeObj = Instantiate(transform.gameObject, null);
         var newNode = newNodeObj.GetComponent<RootNode>();
+        var newTip = newNodeObj.GetComponent<IsRootTip>();
+        newTip.IsTip = false;
         newNode.Children = node.Children;
         foreach (var x in node.Children)
             x.Parent = newNode;
-        newNode.Children.Add(node);
+        newNode.Children.AddRange(node.Children);
+        newNode.Parent = parent;
+        parent.Children.Add(newNode);
         node.Parent = newNode;
-        node.Children.Clear();
+        node.Children = new List<RootNode>();
+        node.OnSplit();
     }
 
     void split(RootNode Child) {
@@ -59,11 +62,13 @@ public class Growing : MonoBehaviour
         var newNodeObj = Instantiate(transform.gameObject, null);
         var newNode = newNodeObj.GetComponent<RootNode>();
         newNodeObj.GetComponent<IsRootTip>().IsTip = false;
-        newNode.Children.Clear();        
+        newNode.Children = new List<RootNode>();       
         newNode.Parent = parent;
         parent.Children.Add(newNode);
         newNode.Children.Add(Child);
         Child.Parent = newNode;
         newNode.transform.position = (Child.transform.position + parent.transform.position) / 2;
+        node.OnSplit();
+        Child.Children = new List<RootNode>();
     }
 }

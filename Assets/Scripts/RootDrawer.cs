@@ -47,7 +47,8 @@ public class RootDrawer : MonoBehaviour
     private void DrawRootNode(RootNode rootNode)
     {
         RootNode endNode = FindNextSplitterOrEnd(rootNode);
-        DrawBranch(rootNode, endNode, false);
+        if (rootNode != endNode)
+           DrawBranch(rootNode, endNode, false);
 
         foreach (var child in endNode.Children.Where(c => c != null))
         {

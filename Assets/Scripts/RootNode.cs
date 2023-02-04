@@ -18,31 +18,11 @@ public class RootNode : MonoBehaviour
 
     public float CurrentLength = 0;
 
-    public float Width = 0;
-
-    public float LengthTillTop
-    {
-        get
-        {
-            if (Parent == null)
-                return 0;
-
-            if (_lengthTillTop > 0)
-            {
-                return _lengthTillTop;
-            }
-
-            _lengthTillTop = Parent.LengthTillTop + (Parent.transform.position - transform.position).magnitude;
-            return _lengthTillTop;
-        }
-    }
-
-    private float _lengthTillTop = 0;
+    public float lengthFromTip = 0;
 
     public void Start()
     {
         CurrentLength = 0;
-        Width = 0;
     }
 
     public void UpdateCurrentLength()

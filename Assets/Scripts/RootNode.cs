@@ -7,7 +7,7 @@ public delegate void VoidCall();
 public class RootNode : MonoBehaviour
 {    
     public List<Vector2> IntermediatePoints; //Between Me and my Parent
-    public List<RootNode> Children;
+    public List<RootNode> Children = new List<RootNode>();
     public RootNode       Parent;
     public VoidCall       OnSplit = () => { };
     public VoidCall       OnDead = () => { };//too much roots around, will not split anymore

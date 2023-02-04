@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RootDrawer : MonoBehaviour
 {
-    public float widthModifier = .1f;
+    public float widthModifier = .005f;
 
     public RootNode theMostParentParent;
 
@@ -40,7 +40,7 @@ public class RootDrawer : MonoBehaviour
         RootNode endNode = FindNextSplitterOrEnd(rootNode);
         DrawBranch(rootNode, endNode, false);
 
-        foreach (var child in endNode.Children)
+        foreach (var child in endNode.Children.Where(c => c != null))
         {
             DrawRootNode(child);
         }
@@ -84,6 +84,10 @@ public class RootDrawer : MonoBehaviour
 
         List<RootNode> nodes = GetBranch(startNode, endNode);
         List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();
+        if (startNode.Parent)
+        {
+            vecs.Insert(0, startNode.Parent.transform.position);
+        }
 
         if (endNode.Children.Any()) {
             endNode.lengthFromTip = endNode.Children.Max(child => child.lengthFromTip + (endNode.transform.position - child.transform.position).magnitude);

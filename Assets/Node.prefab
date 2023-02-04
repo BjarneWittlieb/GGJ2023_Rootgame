@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7819768559241589492}
   - component: {fileID: 7540162341835281498}
   - component: {fileID: 5583166944290233609}
+  - component: {fileID: 6000242805060831474}
   m_Layer: 0
   m_Name: Node
   m_TagString: Root
@@ -61,7 +62,7 @@ MonoBehaviour:
   IsBossRoot: 0
   lineRenderer: {fileID: 0}
   CurrentLength: 0
-  Width: 0
+  lengthFromTip: 0
 --- !u!58 &2840426397435337252
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -179,8 +180,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactEffect: {fileID: 4847857808077694583, guid: 3c81603759251f446b3496ed24bb3d42, type: 3}
+  impactDuration: 0.4
   speed: 0.3
   maxDistance: 7
+--- !u!114 &6000242805060831474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019861488543651140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f1fd4b717c1454c99bcc6024185ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  widthModifier: 0.1
+  theMostParentParent: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &6904274039984262883
 GameObject:
   m_ObjectHideFlags: 0

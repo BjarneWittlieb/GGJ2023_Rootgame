@@ -31,7 +31,7 @@ namespace Abilities
 
         private IEnumerator HandleAbilityUsage_CO()
         {
-            yield return new WaitForSeconds(1);
+            yield return null;
             Ability.Execute(this);
             CurrentAbilityState = AbilityStates.Cooldown;
             OnTriggerAbility?.Invoke();

@@ -9,6 +9,9 @@ public class RandomWalk : MonoBehaviour {
     [SerializeField] private float rotationRange = Mathf.PI / 3;
     [SerializeField] private float progressChance = 0.01f;
     [SerializeField] private Vector2 gravity = new Vector2(0,-0.1f);
+
+    [Range(0.01f,0.99f)]
+    [SerializeField] private float walkSpeed = 0.05f;
     private IsRootTip tip;
     private RootNode node;
 
@@ -37,7 +40,7 @@ public class RandomWalk : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (tip.IsTip && node.Parent)
             walk();        
@@ -49,8 +52,14 @@ public class RandomWalk : MonoBehaviour {
     void walk() {
         if (node.IsDead)
             return;
-        if (Random.value < progressChance)
-            isSplitting = true;
+        if (Random.value < progressChance) {
+            List<Collider2D> collider = new List<Collider2D>(Physics2D.OverlapPointAll(transform.position,LayerMask.GetMask("Wall")));
+            if (collider.Count == 0)
+                isSplitting = true;
+            else
+                rotationRange *= 1.01f;
+
+        }
         transform.position = getTargetPosition();
         
         if (currentAngle < -rotationRange && !currentRotation)
@@ -58,7 +67,7 @@ public class RandomWalk : MonoBehaviour {
         if (currentAngle > rotationRange && currentRotation)
             currentRotation = false;
         currentAngle += (currentRotation ? 1 : -1) * RotationSpeed;
-        currentDistance = currentDistance * 0.95f + tip.SplitDistance * (isSplitting?1.1f:0.9f) * 0.05f;
+        currentDistance = currentDistance * (1- walkSpeed) + tip.SplitDistance * (isSplitting?1.1f:0.9f) * walkSpeed;
 
     }
 
@@ -70,25 +79,6 @@ public class RandomWalk : MonoBehaviour {
         Vector2 movementDir = new Vector2(Mathf.Cos(currentAngle + v), Mathf.Sin(currentAngle + v)).normalized * currentDistance + gravity;
         return (Vector2)node.Parent.transform.position + movementDir;
     }
-
-    double distanceRight() {
-        Vector2 normal = (node.Parent.transform.position - node.transform.position).normalized;
-        Vector2 right = new Vector2(-normal.x, normal.y);
-        var cast = Physics2D.Raycast(transform.position, right);
-        if (cast.collider == null)
-            return float.PositiveInfinity;
-        return cast.distance;
-    }
-
-    double distanceLeft() {
-        Vector2 normal = (node.Parent.transform.position - node.transform.position).normalized;
-        Vector2 left = new Vector2(normal.x, -normal.y);
-        var cast = Physics2D.Raycast(transform.position, left);
-        if (cast.collider == null)
-            return float.PositiveInfinity;
-        return cast.distance;
-    }
-
 
     private void OnDrawGizmos() {
         

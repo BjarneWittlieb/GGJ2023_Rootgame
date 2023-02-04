@@ -20,7 +20,7 @@ public class RootInfluence : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (node.IsDead) {
             Destroy(this);

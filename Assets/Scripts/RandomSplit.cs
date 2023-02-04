@@ -17,7 +17,7 @@ public class RandomSplit : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         if (node.IsDead) {
             Destroy(this);
         }

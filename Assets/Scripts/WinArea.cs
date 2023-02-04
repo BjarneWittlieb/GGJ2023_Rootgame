@@ -8,6 +8,7 @@ public class WinArea : MonoBehaviour
     Collider2D winTrigger;
     bool win = false;
     GameObject winningObject;
+    public Cinemachine.CinemachineVirtualCamera winCam;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,9 @@ public class WinArea : MonoBehaviour
         foreach (var foe in GameObject.FindGameObjectsWithTag("Opponent"))
             Destroy(foe);
 
+        winCam.enabled = true;
+        GameObject.Find("CM vcam1").GetComponent<Cinemachine.CinemachineVirtualCamera>().enabled = false;
+
         yield return new WaitForSeconds(1);
 
         var node = winningObject.GetComponent<RootNode>();
@@ -49,7 +53,7 @@ public class WinArea : MonoBehaviour
         winningObject.GetComponent<RandomSplit>().TimeBeforeNewSplit = 0.3f;
         node.Flower.SetActive(true);
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(8);
         SceneManager.LoadScene("VictoryScene");
     }
 }

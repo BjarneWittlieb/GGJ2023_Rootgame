@@ -1,26 +1,30 @@
-﻿using DefaultNamespace;
+﻿using System;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Abilities
 {
-    public abstract class BaseAbility : ScriptableObject
+    public abstract class BaseAbility : MonoBehaviour
     {
-        [SerializeField]
-        public AbilityCooldown Cooldown { get; set; } = new();
-        [SerializeField]
-        public BaseRessource RequiredResource { get; set; }
-        [SerializeField]
-        public int ResourceCost { get; set; }
-        public Image  Icon { get;      set; }
-        public string Name { get;      set; }
+        public float Cooldown;
+        public float CooldownTimeLeft;
+        
+        [SerializeField] public BaseRessource RequiredResource;
+        [SerializeField] public int           ResourceCost;
+        [SerializeField] public Image         Icon;
+        [SerializeField] public string        Name;
 
         public abstract void Execute(AbilityHolder holder);
+
+        public void OnEnable()
+        {
+        }
 
         public bool IsReady()
         {
             // Ressourcen checken - Cooldown checken etc
-            return !(Cooldown.CooldownTimeLeft > 0);
+            return !(CooldownTimeLeft > 0);
         }
 
         public virtual void OnAbilityUpdate(AbilityHolder holder) { }

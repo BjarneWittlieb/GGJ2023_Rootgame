@@ -20,6 +20,10 @@ public class RandomWalk : MonoBehaviour {
     private float currentDistance = 0;
     private bool isSplitting = false;
 
+
+    float sinceWallIssue;
+    bool hasWallIssue = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,10 +58,19 @@ public class RandomWalk : MonoBehaviour {
             return;
         if (Random.value < progressChance) {
             List<Collider2D> collider = new List<Collider2D>(Physics2D.OverlapPointAll(transform.position,LayerMask.GetMask("Wall")));
-            if (collider.Count == 0)
+            if (collider.Count == 0) {
                 isSplitting = true;
-            else
+                hasWallIssue = false;
+            }
+            else {
                 rotationRange *= 1.01f;
+                if (!hasWallIssue) {
+                    hasWallIssue = true;
+                    sinceWallIssue = Time.time;
+                }
+                else if ((Time.time-sinceWallIssue) > 5)
+                    node.IsDead = true;
+            }
 
         }
         transform.position = getTargetPosition();
@@ -73,11 +86,25 @@ public class RandomWalk : MonoBehaviour {
 
     Vector2 getTargetPosition() {
         Vector2 parentDir = new Vector2(0, 1);
+        bool hasDir = node.Parent.Parent;
+        Vector2 parentPosition = node.Parent.transform.position;
+        Vector2 parentParentPosition = parentPosition;
         if (node.Parent.Parent)
-            parentDir = (node.Parent.transform.position - node.Parent.Parent.transform.position).normalized;
+            parentParentPosition = node.Parent.Parent.transform.position;
+        if (node.IntermediatePoints.Count >= 1) {
+            parentPosition = node.IntermediatePoints[node.IntermediatePoints.Count - 1];
+            parentParentPosition = node.Parent.transform.position;
+            hasDir = true;
+        }
+        if (node.IntermediatePoints.Count >= 2) {
+            parentParentPosition = node.IntermediatePoints[node.IntermediatePoints.Count - 2];
+            hasDir = true;
+        }
+        if (hasDir)
+            parentDir = (parentPosition - parentParentPosition).normalized;
         var v = Mathf.Deg2Rad * Vector2.SignedAngle(new Vector2(1,0), parentDir);
         Vector2 movementDir = new Vector2(Mathf.Cos(currentAngle + v), Mathf.Sin(currentAngle + v)).normalized * currentDistance + gravity;
-        return (Vector2)node.Parent.transform.position + movementDir;
+        return parentPosition + movementDir;
     }
 
     private void OnDrawGizmos() {

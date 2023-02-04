@@ -37,7 +37,7 @@ public class RandomWalk : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (tip.IsTip && node.Parent)
             walk();        

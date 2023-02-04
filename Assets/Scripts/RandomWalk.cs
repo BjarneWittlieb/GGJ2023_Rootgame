@@ -33,7 +33,7 @@ public class RandomWalk : MonoBehaviour {
         currentDistance = 0;
         node.OnSplit += splitting;
         if (!node.Parent)
-            return;
+            return; 
     }
 
     void splitting() {

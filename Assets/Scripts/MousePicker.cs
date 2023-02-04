@@ -43,6 +43,7 @@ public class MousePicker : MonoBehaviour
             rootTarget = null;
 
         grow();
+        rootDestroy();
     }
 
     private void grow() {
@@ -52,6 +53,16 @@ public class MousePicker : MonoBehaviour
                 rootTarget.GetComponent<RootNode>().IsDead = false;
                 rootTarget.GetComponent<RootInfluence>().TipDeadOnInfluence *= 2;
             }
+        }
+    }
+    private void rootDestroy() {
+        if (rootTarget && Input.GetMouseButtonDown(1)) {
+            foreach(var x in rootTarget.GetComponent<RootNode>().Children) {
+                x.Parent = null;
+            }
+            rootTarget.GetComponent<RootNode>().Parent.Children.Remove(rootTarget.GetComponent<RootNode>());
+            Destroy(rootTarget);
+            rootTarget = null;
         }
     }
 

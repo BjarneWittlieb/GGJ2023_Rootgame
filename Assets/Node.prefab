@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7814673752803213274}
   - component: {fileID: 7667332903276833629}
   - component: {fileID: 7819768559241589492}
+  - component: {fileID: 7540162341835281498}
   m_Layer: 0
   m_Name: Node
   m_TagString: Root
@@ -56,6 +57,7 @@ MonoBehaviour:
   Children: []
   Parent: {fileID: 0}
   IsDead: 0
+  IsBossRoot: 0
   lineRenderer: {fileID: 0}
   CurrentLength: 0
 --- !u!58 &2840426397435337252
@@ -148,6 +150,20 @@ MonoBehaviour:
   DeadOnInfluence: 30
   TipDeadOnInfluence: 50
   influenceField: {fileID: 3011700539194620442}
+--- !u!114 &7540162341835281498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019861488543651140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49550f9b131910c4fac194ee90bbbee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RootDeathObject: {fileID: 4847857808077694583, guid: 34b2cb06d42733a4f970881aa6d4b14a, type: 3}
+  timeTillDestruction: 0.5
 --- !u!1 &6904274039984262883
 GameObject:
   m_ObjectHideFlags: 0

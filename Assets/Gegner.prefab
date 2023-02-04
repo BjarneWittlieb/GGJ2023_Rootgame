@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1476539792113596074}
   - component: {fileID: 334441507911394859}
   - component: {fileID: 8667095405603967643}
+  - component: {fileID: 1524200225984131138}
   m_Layer: 0
   m_Name: Gegner
   m_TagString: Opponent
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7936442394270796314}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0b8c3a4a1b8cde47ab75b36fface2bb, type: 3}
   m_Name: 
@@ -197,3 +198,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1524200225984131138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936442394270796314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c50f63c6a1c7248912306c2a9dfe53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 2.07
+  CliffPeekDistance: 0.6

@@ -10,7 +10,6 @@ public class RootNode : MonoBehaviour
     public VoidCall       OnSplit;
     public VoidCall       OnDead;//too much roots around, will not split anymore
     public bool           IsDead = false;
-    public RootNode Parent;
 
     public LineRenderer lineRenderer;
 

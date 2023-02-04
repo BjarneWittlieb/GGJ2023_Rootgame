@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(IsRootTip))]
 public class RandomSplit : MonoBehaviour
 {
-    [SerializeField] private float chancheBranch = 0.001f;
+    public  float chancheBranch = 0.001f;
     public float TimeBeforeNewSplit = 5;
 
     private RootNode node;

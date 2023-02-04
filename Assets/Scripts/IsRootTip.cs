@@ -9,4 +9,11 @@ public class IsRootTip : MonoBehaviour
     //Wurzelspitze. Can Grow from here
     public bool IsTip;
     public float SplitDistance = 0.5f;
+
+
+
+    private void Update() {
+        if (GetComponent<RootNode>() && IsTip)
+            GetComponent<RootNode>().rootCirlce.transform.localScale = new Vector3(0,0,0);
+    }
 }

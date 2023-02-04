@@ -25,6 +25,10 @@ public class Growing : MonoBehaviour
             split();
         else if (tip.IsTip && node.Children.Count != 0)
             branch();
+
+        if (node.IsDead) {
+            Destroy(this);
+        }
     }
 
     bool distanceToHigh(RootNode a, RootNode b) {

@@ -41,6 +41,9 @@ public class RandomWalk : MonoBehaviour {
     {
         if (tip.IsTip && node.Parent)
             walk();        
+        if (node.IsDead) {
+            Destroy(this);
+        }
     }
 
     void walk() {
@@ -64,7 +67,6 @@ public class RandomWalk : MonoBehaviour {
         if (node.Parent.Parent)
             parentDir = (node.Parent.transform.position - node.Parent.Parent.transform.position).normalized;
         var v = Mathf.Deg2Rad * Vector2.SignedAngle(new Vector2(1,0), parentDir);
-        Debug.Log(v);
         Vector2 movementDir = new Vector2(Mathf.Cos(currentAngle + v), Mathf.Sin(currentAngle + v)).normalized * currentDistance + gravity;
         return (Vector2)node.Parent.transform.position + movementDir;
     }

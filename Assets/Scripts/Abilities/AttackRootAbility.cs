@@ -22,7 +22,7 @@ namespace Abilities
         
         private void Attack()
         {
-            var rootTarget = picker.PickTarget();
+            var rootTarget = picker.target;
             
             if (rootTarget)
             {

@@ -18,19 +18,22 @@ public class RootInfluence : MonoBehaviour
     {
         node = GetComponent<RootNode>();
         tip = GetComponent<IsRootTip>();
+        StartCoroutine(customUpdate());
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        currentInfluence = 0;
-        foreach (var x in Physics2D.OverlapCircleAll(transform.position, influenceField.radius))
-            if (LayerMask.LayerToName(x.gameObject.layer) == "RootInfluence")
-                currentInfluence++;
 
-        if ((tip.IsTip && currentInfluence > TipDeadOnInfluence ) ||
-            (!tip.IsTip && currentInfluence > DeadOnInfluence)
-            )
-            node.IsDead = true;
+    IEnumerator customUpdate() {
+        while (true) {
+            currentInfluence = 0;
+            foreach (var x in Physics2D.OverlapCircleAll(transform.position, influenceField.radius))
+                if (LayerMask.LayerToName(x.gameObject.layer) == "RootInfluence")
+                    currentInfluence++;
+
+            if ((tip.IsTip && currentInfluence > TipDeadOnInfluence) ||
+                (!tip.IsTip && currentInfluence > DeadOnInfluence)
+                )
+                node.IsDead = true;
+            yield return new WaitForSeconds(0.21f);
+        }
     }
 }

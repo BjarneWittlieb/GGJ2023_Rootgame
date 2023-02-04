@@ -13,11 +13,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
+        if (Input.GetKeyUp(splitHolder.Ability.Code))
             splitHolder.TriggerAbility();
-        
-        if(Input.GetKeyUp(KeyCode.Alpha2))
+
+        if (Input.GetKeyUp(attackholder.Ability.Code))
             attackholder.TriggerAbility();
-        
     }
 }

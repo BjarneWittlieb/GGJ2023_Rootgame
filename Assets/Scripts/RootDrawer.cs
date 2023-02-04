@@ -7,6 +7,7 @@ public class RootDrawer : MonoBehaviour
     public float widthModifier = .1f;
 
     public RootNode theMostParentParent;
+    public Material material;
 
     public Color color = Color.black;
 
@@ -74,6 +75,7 @@ public class RootDrawer : MonoBehaviour
         if (lineRenderer == null)
         {
             lineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
+            lineRenderer.material = material;
             endNode.lineRenderer = lineRenderer;
             lineRenderer.startColor = color;
             lineRenderer.endColor = color;

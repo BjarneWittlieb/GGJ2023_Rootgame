@@ -23,9 +23,6 @@ public class RandomSplit : MonoBehaviour
     void FixedUpdate() {
         if (sinceExistence + TimeBeforeNewSplit > Time.time)
             return;
-        if (node.IsDead) {
-            Destroy(this);
-        }
         if (!tip.IsTip && !node.IsDead && Random.value < chancheBranch)
             tip.IsTip = true;
     }

@@ -78,6 +78,7 @@ public class Growing : MonoBehaviour
         newNode.Parent = parent;
         parent.Children.Add(newNode);
         newNode.Children.Add(Me);
+        newNode.lineRenderer = null;
         Me.Parent = newNode;
         newNode.transform.position = (Me.transform.position + getPreviousPos()) / 2;
         newNode.IntermediatePoints = Me.IntermediatePoints;

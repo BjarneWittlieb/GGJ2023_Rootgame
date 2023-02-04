@@ -74,7 +74,9 @@ public class RootDrawer : MonoBehaviour
         LineRenderer lineRenderer = endNode.lineRenderer;
         if (lineRenderer == null)
         {
-            lineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
+            var g = new GameObject("Line");
+            g.transform.parent = endNode.transform;
+            lineRenderer = g.AddComponent<LineRenderer>();
             lineRenderer.material = material;
             endNode.lineRenderer = lineRenderer;
             lineRenderer.startColor = color;
@@ -100,7 +102,8 @@ public class RootDrawer : MonoBehaviour
         startNode.lengthFromTip = endNode.lengthFromTip + GetLengthOfPath(vecs);
         lineRenderer.startWidth = CalculateWidth(startNode.lengthFromTip);
         lineRenderer.endWidth = CalculateWidth(endNode.lengthFromTip);
-
+        startNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.startWidth;
+        endNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.endWidth;
         if (onlyAdjustWidth) return;
 
         int totalLength = vecs.Count;

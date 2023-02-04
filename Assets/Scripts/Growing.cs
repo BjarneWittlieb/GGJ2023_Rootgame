@@ -51,7 +51,10 @@ public class Growing : MonoBehaviour
     public void branch() {
         var parent = node.Parent;
         parent.Children.Remove(node);
-        var newNodeObj = Instantiate(transform.gameObject, null);
+        Transform basket = (GameObject.Find("RootBasket")? GameObject.Find("RootBasket").transform:null);
+        var newNodeObj = Instantiate(transform.gameObject, basket);
+        
+
         var newNode = newNodeObj.GetComponent<RootNode>();
         var newTip = newNodeObj.GetComponent<IsRootTip>();
         newTip.IsTip = false;
@@ -71,8 +74,9 @@ public class Growing : MonoBehaviour
 
     void split(RootNode Me) {
         RootNode parent = Me.Parent;
-        parent.Children.Remove(Me);        
-        var newNodeObj = Instantiate(transform.gameObject, null);
+        parent.Children.Remove(Me);
+        Transform basket = (GameObject.Find("RootBasket") ? GameObject.Find("RootBasket").transform : null);
+        var newNodeObj = Instantiate(transform.gameObject, basket);
         var newNode = newNodeObj.GetComponent<RootNode>();
         newNodeObj.GetComponent<IsRootTip>().IsTip = false;
         newNode.Children = new List<RootNode>();       

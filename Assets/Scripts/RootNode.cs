@@ -14,6 +14,7 @@ public class RootNode : MonoBehaviour
     public VoidCall       OnDead = () => { };//too much roots around, will not split anymore
     public bool           IsDead = false;
     public bool           IsBossRoot = false; //Can exists without parent
+    public GameObject rootCirlce;
 
     public LineRenderer lineRenderer;
 

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7667332903276833629}
   - component: {fileID: 7819768559241589492}
   - component: {fileID: 7540162341835281498}
+  - component: {fileID: 5583166944290233609}
   m_Layer: 0
   m_Name: Node
   m_TagString: Root
@@ -165,6 +166,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RootDeathObject: {fileID: 4847857808077694583, guid: 34b2cb06d42733a4f970881aa6d4b14a, type: 3}
   timeTillDestruction: 0.5
+--- !u!114 &5583166944290233609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019861488543651140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f180bfcda869d5418de2616490da2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactEffect: {fileID: 4847857808077694583, guid: 3c81603759251f446b3496ed24bb3d42, type: 3}
+  speed: 0.3
+  maxDistance: 7
 --- !u!1 &6904274039984262883
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,4 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   widthModifier: 0.1
   theMostParentParent: {fileID: 0}
+  material: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 1}
+  renderSortingLayer: Root

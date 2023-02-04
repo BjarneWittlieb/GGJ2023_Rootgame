@@ -69,6 +69,7 @@ public class Growing : MonoBehaviour
         newNode.Children.Add(node);
         node.Parent = newNode;
         node.Children = new List<RootNode>();
+        if(node.rootCirlce) node.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
         node.OnSplit();
     }
 
@@ -89,6 +90,7 @@ public class Growing : MonoBehaviour
         newNode.IntermediatePoints = Me.IntermediatePoints;
         Me.IntermediatePoints = new List<Vector2>();
         Me.Children = new List<RootNode>();
+        if (Me.rootCirlce) Me.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
         Me.OnSplit();
 
     }

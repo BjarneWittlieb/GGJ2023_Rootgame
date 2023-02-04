@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
     private readonly float scrollSpeed;
     private          float xThreshold;
     private          float yThreshold;
+    public Cinemachine.CinemachineVirtualCamera cam;
 
     public CameraMovement()
     {
@@ -20,6 +21,10 @@ public class CameraMovement : MonoBehaviour
     {
         ProcessKeyboardMovements();
         ProcessEdgeScrolling();
+
+        if (cam) {
+            cam.m_Lens.OrthographicSize = Mathf.Clamp(cam.m_Lens.OrthographicSize-Input.mouseScrollDelta.y,2,100);
+        }
     }
 
     // Update is called once per frame

@@ -19,12 +19,11 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         ProcessKeyboardMovements();
-
-        MousePos();
+        ProcessEdgeScrolling();
     }
 
     // Update is called once per frame
-    private void MousePos()
+    private void ProcessEdgeScrolling()
     {
         var screenRect = new Rect(0f, 0f, Screen.width, Screen.height);
         var mousePos   = Input.mousePosition;

@@ -123,6 +123,35 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &146684497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7005970674655537916, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+  m_PrefabInstance: {fileID: 7005970674512269485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &146684499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7005970674655537918, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+  m_PrefabInstance: {fileID: 7005970674512269485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146684497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &146684501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146684497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0363d2d992fc74c42afb5de3bf9df80b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 146684499}
 --- !u!1001 &7005970674512269485
 PrefabInstance:
   m_ObjectHideFlags: 0

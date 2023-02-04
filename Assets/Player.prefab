@@ -405,7 +405,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6327846744050729225}
   - component: {fileID: 6327846744050729227}
-  - component: {fileID: 6327846744050729226}
   m_Layer: 0
   m_Name: SplitAbility
   m_TagString: Untagged
@@ -443,27 +442,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cooldown: 1
   CooldownTimeLeft: 1
-  isCooldown: 0
-  RequiredResource: {fileID: 0}
-  ResourceCost: 0
-  AbilityIcon: {fileID: 0}
-  Name: 
-  Code: 0
-  audio: {fileID: 0}
---- !u!114 &6327846744050729226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6327846744050729224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ba9efecc1746b59bba8678996927c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cooldown: 0
-  CooldownTimeLeft: 0
   isCooldown: 0
   RequiredResource: {fileID: 0}
   ResourceCost: 0

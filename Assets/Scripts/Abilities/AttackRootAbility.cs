@@ -8,7 +8,6 @@ namespace Abilities
         private NodePicker picker;
         public void OnEnable()
         {
-            picker           = GameObject.Find("Player").GetComponent<NodePicker>();
             Cooldown         = 1;
             CooldownTimeLeft = 1;
             RequiredResource = ScriptableObject.CreateInstance<Mana>();
@@ -22,13 +21,14 @@ namespace Abilities
         
         private void Attack()
         {
+            picker = GameObject.Find("Player").GetComponent<NodePicker>();
             var rootTarget = picker.target;
+
+            if (!rootTarget) 
+                return;
             
-            if (rootTarget)
-            {
-                if (rootTarget.GetComponent<RootAttack>())
-                    rootTarget.GetComponent<RootAttack>().attack(picker.marker.transform.position);
-            }
+            if (rootTarget.GetComponent<RootAttack>() is RootAttack rootAttack)
+                rootAttack.attack(picker.marker.transform.position);
         }
     }
 }

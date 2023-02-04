@@ -6,7 +6,7 @@ using UnityEngine.Timeline;
 
 public class NodePicker : MonoBehaviour
 {
-    [SerializeField] private GameObject marker;
+    [SerializeField] public GameObject marker;
     [SerializeField] private Camera     cam;
     [SerializeField] private float      maxPickDist = 10;
 

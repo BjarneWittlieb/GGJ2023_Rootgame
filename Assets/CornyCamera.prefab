@@ -439,7 +439,7 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -502,6 +502,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MousePicker
       objectReference: {fileID: 0}
+    - target: {fileID: 1925912609034340163, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
+      propertyPath: m_Name
+      value: Marker
+      objectReference: {fileID: 0}
     - target: {fileID: 4112811519104052872, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -546,10 +550,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7117695144931304341, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 7005970675170316488}
+    - target: {fileID: 7117695144931304341, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 3168082588442388272}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
 --- !u!4 &603158326704967419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4112811519104052872, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
+  m_PrefabInstance: {fileID: 3552633138654306419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3168082588442388272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1925912609034340163, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
   m_PrefabInstance: {fileID: 3552633138654306419}
   m_PrefabAsset: {fileID: 0}

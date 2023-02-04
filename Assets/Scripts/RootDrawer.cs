@@ -1,11 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class RootDrawer : MonoBehaviour
 {
@@ -26,7 +21,7 @@ public class RootDrawer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        theMostParentParent.UpdateCurrentLength();
+        //theMostParentParent.UpdateCurrentLength();
         DrawNewTree();
     }
 
@@ -89,6 +84,12 @@ public class RootDrawer : MonoBehaviour
 
         List<RootNode> nodes = GetBranch(startNode, endNode);
         List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();
+
+        if (endNode.Children.Any()) {
+            endNode.lengthFromTip = endNode.Children.Max(child => child.lengthFromTip + (endNode.transform.position - child.transform.position).magnitude);
+        } else {
+            endNode.lengthFromTip = 0;
+        }
 
         startNode.lengthFromTip = endNode.lengthFromTip + GetLengthOfPath(vecs);
         lineRenderer.startWidth = CalculateWidth(startNode.lengthFromTip);

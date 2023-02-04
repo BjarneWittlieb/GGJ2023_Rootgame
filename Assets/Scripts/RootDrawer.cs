@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RootDrawer : MonoBehaviour
 {
@@ -37,18 +39,7 @@ public class RootDrawer : MonoBehaviour
     {
         return rootNode.CurrentLength;
     }
-
-    private float GetWidthOfRootNode(RootNode rootNode)
-    {
-        if (!rootNode.Children.Any())
-        {
-            rootNode.Width = 0;
-            return 0;
-        }
-
-        return Mathf.Log(GetLongestPathLength(rootNode) + 1f) * widthModifier;
-    }
-
+    
     private void DrawRootNode(RootNode rootNode)
     {
         RootNode endNode = FindNextSplitterOrEnd(rootNode);
@@ -74,7 +65,12 @@ public class RootDrawer : MonoBehaviour
 
     private float GetNewWidthFromBefore(float widthBefore, float additionalLength)
     {
-        return widthBefore + (1f / (additionalLength + 1)) * widthModifier;
+        return Mathf.Log(Mathf.Exp(widthBefore) / widthModifier + additionalLength) * widthModifier;
+    }
+
+    private float CalculateWidth(float length)
+    {
+        return -Mathf.Exp(-widthModifier * length) + 1;
     }
 
     private void DrawBranch(RootNode startNode, RootNode endNode, bool onlyAdjustWidth)
@@ -94,11 +90,9 @@ public class RootDrawer : MonoBehaviour
         List<RootNode> nodes = GetBranch(startNode, endNode);
         List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();
 
-        float endWidth = endNode.Width;
-        float startWidth = GetNewWidthFromBefore(endWidth, vecs.Sum(v => v.magnitude));
-        startNode.Width = startWidth;
-        lineRenderer.startWidth = startWidth;
-        lineRenderer.endWidth = endWidth;
+        startNode.lengthFromTip = endNode.lengthFromTip + GetLengthOfPath(vecs);
+        lineRenderer.startWidth = CalculateWidth(startNode.lengthFromTip);
+        lineRenderer.endWidth = CalculateWidth(endNode.lengthFromTip);
 
         if (onlyAdjustWidth) return;
 
@@ -115,6 +109,16 @@ public class RootDrawer : MonoBehaviour
         for (int i = 0; i < vecs.Count; i++) {
             lineRenderer.SetPosition(i, vecs[i]);
         }
+    }
+
+    private float GetLengthOfPath(List<Vector3> path)
+    {
+        float length = 0;
+        for (int i = 0; i < path.Count - 1; ++i)
+        {
+            length += (path[i] - path[i + 1]).magnitude;
+        }
+        return length;
     }
 
     private List<Vector3> GetPositions(RootNode rootNode)

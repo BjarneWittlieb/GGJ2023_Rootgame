@@ -971,6 +971,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CornyCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 7005970674655537919, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0903988
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005970675170316495, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0903988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
 --- !u!1 &1729379747
@@ -1270,6 +1278,10 @@ PrefabInstance:
     - target: {fileID: 2019861488543651140, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_Name
       value: Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408449757215703204, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: IsBossRoot
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6408449757215703204, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: Children.Array.size

@@ -56,6 +56,7 @@ public class Growing : MonoBehaviour
         var newTip = newNodeObj.GetComponent<IsRootTip>();
         newTip.IsTip = false;
         newNode.Children = node.Children;
+        newNode.lineRenderer = null;
         foreach (var x in node.Children)
             x.Parent = newNode;
         newNode.Parent = parent;
@@ -75,10 +76,10 @@ public class Growing : MonoBehaviour
         var newNode = newNodeObj.GetComponent<RootNode>();
         newNodeObj.GetComponent<IsRootTip>().IsTip = false;
         newNode.Children = new List<RootNode>();       
+        newNode.lineRenderer = null;
         newNode.Parent = parent;
         parent.Children.Add(newNode);
         newNode.Children.Add(Me);
-        newNode.lineRenderer = null;
         Me.Parent = newNode;
         newNode.transform.position = (Me.transform.position + getPreviousPos()) / 2;
         newNode.IntermediatePoints = Me.IntermediatePoints;

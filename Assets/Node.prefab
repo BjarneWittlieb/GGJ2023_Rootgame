@@ -71,7 +71,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.1
 --- !u!114 &307658134521740053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationSpeed: 0.1
   rotationRange: 1.547198
-  progressChance: 0.01
+  progressChance: 0.05
   gravity: {x: 0, y: -0.03}
 --- !u!114 &7667332903276833629
 MonoBehaviour:

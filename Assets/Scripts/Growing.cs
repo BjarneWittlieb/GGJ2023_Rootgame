@@ -48,7 +48,7 @@ public class Growing : MonoBehaviour
                 split(node);
         }
     }
-    void branch() {
+    public void branch() {
         var parent = node.Parent;
         parent.Children.Remove(node);
         var newNodeObj = Instantiate(transform.gameObject, null);

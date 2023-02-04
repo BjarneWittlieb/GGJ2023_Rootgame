@@ -9,8 +9,8 @@ public class RootNode : MonoBehaviour
     public List<Vector2> IntermediatePoints; //Between Me and my Parent
     public List<RootNode> Children;
     public RootNode       Parent;
-    public VoidCall       OnSplit;
-    public VoidCall       OnDead;//too much roots around, will not split anymore
+    public VoidCall       OnSplit = () => { };
+    public VoidCall       OnDead = () => { };//too much roots around, will not split anymore
     public bool           IsDead = false;
 
     public LineRenderer lineRenderer;
@@ -19,7 +19,6 @@ public class RootNode : MonoBehaviour
 
     public void Start()
     {
-        lineRenderer = null;
         CurrentLength = 0;
     }
 
@@ -37,8 +36,15 @@ public class RootNode : MonoBehaviour
     }
 
     private void OnDrawGizmos() {
-        foreach (var x in Children)
-            if (x)
-                Gizmos.DrawLine(transform.position, x.transform.position);
+        if (!Parent)
+            return;
+        if (IntermediatePoints.Count != 0) {
+            Gizmos.DrawLine(Parent.transform.position, IntermediatePoints.First());
+            for(int i = 1;i < IntermediatePoints.Count;i++)
+                Gizmos.DrawLine(IntermediatePoints[i-1], IntermediatePoints[i]);
+            Gizmos.DrawLine(transform.position, IntermediatePoints.Last());
+        }
+        else
+            Gizmos.DrawLine(Parent.transform.position, transform.position);
     }
 }

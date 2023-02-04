@@ -7,6 +7,7 @@ public class RootInfluence : MonoBehaviour
 {
     public int currentInfluence = 0;
     public int DeadOnInfluence = 50;
+    public int TipDeadOnInfluence = 100;
     public CircleCollider2D influenceField;
 
     private RootNode node;
@@ -31,7 +32,9 @@ public class RootInfluence : MonoBehaviour
             if (LayerMask.LayerToName(x.gameObject.layer) == "RootInfluence")
                 currentInfluence++;
 
-        if (currentInfluence > DeadOnInfluence)
+        if ((tip.IsTip && currentInfluence > DeadOnInfluence) ||
+            (!tip.IsTip && currentInfluence > TipDeadOnInfluence)
+            )
             node.IsDead = true;
     }
 }

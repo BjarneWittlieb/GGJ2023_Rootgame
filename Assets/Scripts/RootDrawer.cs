@@ -40,6 +40,12 @@ public class RootDrawer : MonoBehaviour
 
     private float GetWidthOfRootNode(RootNode rootNode)
     {
+        if (!rootNode.Children.Any())
+        {
+            rootNode.Width = 0;
+            return 0;
+        }
+
         return Mathf.Log(GetLongestPathLength(rootNode) + 1f) * widthModifier;
     }
 
@@ -66,6 +72,11 @@ public class RootDrawer : MonoBehaviour
         }
     }
 
+    private float GetNewWidthFromBefore(float widthBefore, float additionalLength)
+    {
+        return widthBefore + (1f / (additionalLength + 1)) * widthModifier;
+    }
+
     private void DrawBranch(RootNode startNode, RootNode endNode, bool onlyAdjustWidth)
     {
         LineRenderer lineRenderer = endNode.lineRenderer;
@@ -79,29 +90,38 @@ public class RootDrawer : MonoBehaviour
             lineRenderer.positionCount = 0;
         }
 
-        float endWidth = GetWidthOfRootNode(startNode);
-        float startWidth = GetWidthOfRootNode(endNode);
+
+        List<RootNode> nodes = GetBranch(startNode, endNode);
+        List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();
+
+        float endWidth = endNode.Width;
+        float startWidth = GetNewWidthFromBefore(endWidth, vecs.Sum(v => v.magnitude));
+        startNode.Width = startWidth;
         lineRenderer.startWidth = startWidth;
         lineRenderer.endWidth = endWidth;
 
-        Debug.Log($"Start: {startWidth}");
-        Debug.Log($"End: {endWidth}");
-        Debug.Log($"");
-        Debug.Log($"");
-
         if (onlyAdjustWidth) return;
 
-        List<RootNode> nodes = GetBranch(startNode, endNode);
-        int totalLength = nodes.Count;
+        int totalLength = vecs.Count;
 
         // Only add none added
-        nodes = nodes.Skip(lineRenderer.positionCount).ToList();
-        if (!nodes.Any()) return;
+        //nodes = nodes.Skip(lineRenderer.positionCount).ToList();
+        //if (!nodes.Any()) return;
+
+        if (totalLength == lineRenderer.positionCount)
+            return;
 
         lineRenderer.positionCount = totalLength;
-        for (int i = 0; i < nodes.Count; i++) {
-            lineRenderer.SetPosition(totalLength - nodes.Count + i, nodes[i].transform.position);
+        for (int i = 0; i < vecs.Count; i++) {
+            lineRenderer.SetPosition(i, vecs[i]);
         }
+    }
+
+    private List<Vector3> GetPositions(RootNode rootNode)
+    {
+        var positions = rootNode.IntermediatePoints.Select(v => new Vector3(v.x, v.y, 0)).ToList();
+        positions.Add(rootNode.transform.position);
+        return positions;
     }
 
     /// <summary>

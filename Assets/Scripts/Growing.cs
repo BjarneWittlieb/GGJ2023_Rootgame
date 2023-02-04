@@ -51,11 +51,15 @@ public class Growing : MonoBehaviour
     public void branch() {
         var parent = node.Parent;
         parent.Children.Remove(node);
-        var newNodeObj = Instantiate(transform.gameObject, null);
+        Transform basket = (GameObject.Find("RootBasket")? GameObject.Find("RootBasket").transform:null);
+        var newNodeObj = Instantiate(transform.gameObject, basket);
+        
+
         var newNode = newNodeObj.GetComponent<RootNode>();
         var newTip = newNodeObj.GetComponent<IsRootTip>();
         newTip.IsTip = false;
         newNode.Children = node.Children;
+        newNode.lineRenderer = null;
         foreach (var x in node.Children)
             x.Parent = newNode;
         newNode.Parent = parent;
@@ -70,15 +74,16 @@ public class Growing : MonoBehaviour
 
     void split(RootNode Me) {
         RootNode parent = Me.Parent;
-        parent.Children.Remove(Me);        
-        var newNodeObj = Instantiate(transform.gameObject, null);
+        parent.Children.Remove(Me);
+        Transform basket = (GameObject.Find("RootBasket") ? GameObject.Find("RootBasket").transform : null);
+        var newNodeObj = Instantiate(transform.gameObject, basket);
         var newNode = newNodeObj.GetComponent<RootNode>();
         newNodeObj.GetComponent<IsRootTip>().IsTip = false;
         newNode.Children = new List<RootNode>();       
+        newNode.lineRenderer = null;
         newNode.Parent = parent;
         parent.Children.Add(newNode);
         newNode.Children.Add(Me);
-        newNode.lineRenderer = null;
         Me.Parent = newNode;
         newNode.transform.position = (Me.transform.position + getPreviousPos()) / 2;
         newNode.IntermediatePoints = Me.IntermediatePoints;

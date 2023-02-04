@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RootDrawer : MonoBehaviour
 {
-    public float widthModifier = .1f;
+    public float widthModifier = .005f;
 
     public RootNode theMostParentParent;
+    public Material material;
 
     public Color color = Color.black;
 
@@ -40,7 +41,7 @@ public class RootDrawer : MonoBehaviour
         RootNode endNode = FindNextSplitterOrEnd(rootNode);
         DrawBranch(rootNode, endNode, false);
 
-        foreach (var child in endNode.Children)
+        foreach (var child in endNode.Children.Where(c => c != null))
         {
             DrawRootNode(child);
         }
@@ -73,7 +74,10 @@ public class RootDrawer : MonoBehaviour
         LineRenderer lineRenderer = endNode.lineRenderer;
         if (lineRenderer == null)
         {
-            lineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
+            var g = new GameObject("Line");
+            g.transform.parent = endNode.transform;
+            lineRenderer = g.AddComponent<LineRenderer>();
+            lineRenderer.material = material;
             endNode.lineRenderer = lineRenderer;
             lineRenderer.startColor = color;
             lineRenderer.endColor = color;
@@ -84,6 +88,10 @@ public class RootDrawer : MonoBehaviour
 
         List<RootNode> nodes = GetBranch(startNode, endNode);
         List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();
+        if (startNode.Parent)
+        {
+            vecs.Insert(0, startNode.Parent.transform.position);
+        }
 
         if (endNode.Children.Any()) {
             endNode.lengthFromTip = endNode.Children.Max(child => child.lengthFromTip + (endNode.transform.position - child.transform.position).magnitude);
@@ -94,7 +102,8 @@ public class RootDrawer : MonoBehaviour
         startNode.lengthFromTip = endNode.lengthFromTip + GetLengthOfPath(vecs);
         lineRenderer.startWidth = CalculateWidth(startNode.lengthFromTip);
         lineRenderer.endWidth = CalculateWidth(endNode.lengthFromTip);
-
+        startNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.startWidth;
+        endNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.endWidth;
         if (onlyAdjustWidth) return;
 
         int totalLength = vecs.Count;

@@ -53,6 +53,7 @@ public class Growing : MonoBehaviour
         parent.Children.Add(newNode);
         node.Parent = newNode;
         node.Children = new List<RootNode>();
+        node.OnSplit();
     }
 
     void split(RootNode Child) {
@@ -67,5 +68,7 @@ public class Growing : MonoBehaviour
         newNode.Children.Add(Child);
         Child.Parent = newNode;
         newNode.transform.position = (Child.transform.position + parent.transform.position) / 2;
+        node.OnSplit();
+        Child.Children = new List<RootNode>();
     }
 }

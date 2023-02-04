@@ -154,17 +154,37 @@ PrefabInstance:
       propertyPath: Children.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: speed
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: gravity.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: RotationSpeed
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: rotationRange
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: progressChance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.59
+      value: 20.326
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.81
+      value: -7.021
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1213,17 +1233,25 @@ PrefabInstance:
       propertyPath: Children.Array.data[0]
       value: 
       objectReference: {fileID: 122548560}
+    - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: speed
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814673752803213274, guid: ebe9b67093e2cf043807785997657006, type: 3}
+      propertyPath: progressChance
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.72
+      value: 21.23
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.81
+      value: -7.33
       objectReference: {fileID: 0}
     - target: {fileID: 8757707479940228868, guid: ebe9b67093e2cf043807785997657006, type: 3}
       propertyPath: m_LocalPosition.z

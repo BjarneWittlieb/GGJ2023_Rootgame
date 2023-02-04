@@ -14,11 +14,12 @@ namespace Abilities
             Cooldown   = 1
         }
 
-        public  AbilityStates CurrentAbilityState = AbilityStates.ReadyToUse;
-        public  UnityEvent    OnTriggerAbility;
-        private Coroutine   handleAbilityUsage;
-        public  Root          Owner   { get; set; }
-        public  BaseAbility   Ability { get; set; }
+        public                  AbilityStates CurrentAbilityState = AbilityStates.ReadyToUse;
+        public                  UnityEvent    OnTriggerAbility;
+        private                 Coroutine     handleAbilityUsage;
+        
+        [SerializeField] public Root          Owner;
+        [SerializeField] public BaseAbility   Ability;
 
         public void TriggerAbility()
         {
@@ -41,7 +42,7 @@ namespace Abilities
 
         private IEnumerator HandleAbiltyCheck_CO()
         {
-            var cooldown = Math.Ceiling(Ability.Cooldown.CooldownTimeLeft);
+            var cooldown = Math.Ceiling(Ability.CooldownTimeLeft);
             yield return new WaitForSeconds((int)cooldown);
             
             CurrentAbilityState = AbilityStates.ReadyToUse;

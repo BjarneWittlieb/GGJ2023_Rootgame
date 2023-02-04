@@ -5,7 +5,8 @@ using UnityEngine;
 
 public delegate void VoidCall();
 public class RootNode : MonoBehaviour
-{    
+{
+    public bool drawGizmo = false;
     public List<Vector2> IntermediatePoints; //Between Me and my Parent
     public List<RootNode> Children = new List<RootNode>();
     public RootNode       Parent;
@@ -13,6 +14,7 @@ public class RootNode : MonoBehaviour
     public VoidCall       OnDead = () => { };//too much roots around, will not split anymore
     public bool           IsDead = false;
     public bool           IsBossRoot = false; //Can exists without parent
+    public GameObject rootCirlce;
 
     public LineRenderer lineRenderer;
 
@@ -39,6 +41,8 @@ public class RootNode : MonoBehaviour
     }
 
     private void OnDrawGizmos() {
+        if (!drawGizmo)
+            return;
         if (!Parent)
             return;
         if (IntermediatePoints.Count != 0) {

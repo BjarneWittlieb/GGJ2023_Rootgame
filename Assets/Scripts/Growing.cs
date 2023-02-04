@@ -51,7 +51,10 @@ public class Growing : MonoBehaviour
     public void branch() {
         var parent = node.Parent;
         parent.Children.Remove(node);
-        var newNodeObj = Instantiate(transform.gameObject, null);
+        Transform basket = (GameObject.Find("RootBasket")? GameObject.Find("RootBasket").transform:null);
+        var newNodeObj = Instantiate(transform.gameObject, basket);
+        
+
         var newNode = newNodeObj.GetComponent<RootNode>();
         var newTip = newNodeObj.GetComponent<IsRootTip>();
         newTip.IsTip = false;
@@ -66,13 +69,15 @@ public class Growing : MonoBehaviour
         newNode.Children.Add(node);
         node.Parent = newNode;
         node.Children = new List<RootNode>();
+        if(node.rootCirlce) node.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
         node.OnSplit();
     }
 
     void split(RootNode Me) {
         RootNode parent = Me.Parent;
-        parent.Children.Remove(Me);        
-        var newNodeObj = Instantiate(transform.gameObject, null);
+        parent.Children.Remove(Me);
+        Transform basket = (GameObject.Find("RootBasket") ? GameObject.Find("RootBasket").transform : null);
+        var newNodeObj = Instantiate(transform.gameObject, basket);
         var newNode = newNodeObj.GetComponent<RootNode>();
         newNodeObj.GetComponent<IsRootTip>().IsTip = false;
         newNode.Children = new List<RootNode>();       
@@ -85,6 +90,7 @@ public class Growing : MonoBehaviour
         newNode.IntermediatePoints = Me.IntermediatePoints;
         Me.IntermediatePoints = new List<Vector2>();
         Me.Children = new List<RootNode>();
+        if (Me.rootCirlce) Me.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
         Me.OnSplit();
 
     }

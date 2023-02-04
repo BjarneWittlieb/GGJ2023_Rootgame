@@ -7,8 +7,10 @@ public class RootDrawer : MonoBehaviour
     public float widthModifier = .005f;
 
     public RootNode theMostParentParent;
+    public Material material;
 
     public Color color = Color.black;
+    public string renderSortingLayer = "Default";
 
     //private float _totalMaxLength;
 
@@ -73,7 +75,11 @@ public class RootDrawer : MonoBehaviour
         LineRenderer lineRenderer = endNode.lineRenderer;
         if (lineRenderer == null)
         {
-            lineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
+            var g = new GameObject("Line");
+            g.transform.parent = endNode.transform;
+            lineRenderer = g.AddComponent<LineRenderer>();
+            lineRenderer.sortingLayerName = renderSortingLayer;
+            lineRenderer.material = material;
             endNode.lineRenderer = lineRenderer;
             lineRenderer.startColor = color;
             lineRenderer.endColor = color;
@@ -98,7 +104,12 @@ public class RootDrawer : MonoBehaviour
         startNode.lengthFromTip = endNode.lengthFromTip + GetLengthOfPath(vecs);
         lineRenderer.startWidth = CalculateWidth(startNode.lengthFromTip);
         lineRenderer.endWidth = CalculateWidth(endNode.lengthFromTip);
-
+        
+        
+        if(startNode.rootCirlce) startNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.startWidth * 0.7f;
+        if (endNode.rootCirlce) endNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.endWidth * 0.7f;
+        
+        
         if (onlyAdjustWidth) return;
 
         int totalLength = vecs.Count;

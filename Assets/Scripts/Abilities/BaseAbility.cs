@@ -9,7 +9,7 @@ namespace Abilities
     {
         public float Cooldown;
         public float CooldownTimeLeft;
-        public bool isCooldown = true;
+        public bool isCooldown;
         
         [SerializeField] public BaseRessource RequiredResource;
         [SerializeField] public int           ResourceCost;
@@ -18,10 +18,6 @@ namespace Abilities
         [SerializeField] public KeyCode Code;
 
         public abstract void Execute(AbilityHolder holder);
-
-        public void OnEnable()
-        {
-        }
 
         public void Update()
         {
@@ -51,6 +47,8 @@ namespace Abilities
         public void Start()
         {
             AbilityIcon.fillAmount = 1;
+            isCooldown = true;
+            CheckCooldown();
         }
 
         public bool IsReady()

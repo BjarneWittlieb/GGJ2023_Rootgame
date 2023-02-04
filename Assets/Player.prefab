@@ -311,8 +311,8 @@ MonoBehaviour:
   ResourceCost: 0
   AbilityIcon: {fileID: 0}
   Name: 
-  Code: 49
-  audio: {fileID: 0}
+  Code: 50
+  audio: {fileID: 3650353613491734079}
 --- !u!1 &6327846743901477858
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,8 +447,8 @@ MonoBehaviour:
   ResourceCost: 0
   AbilityIcon: {fileID: 0}
   Name: 
-  Code: 0
-  audio: {fileID: 0}
+  Code: 49
+  audio: {fileID: 3439843627255592710}
 --- !u!1 &7686777509384818274
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +493,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 19baa206257f04a44a472502882f9ccc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.352
   m_Pitch: 1
   Loop: 0
   Mute: 0

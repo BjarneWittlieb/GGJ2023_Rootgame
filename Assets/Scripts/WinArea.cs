@@ -53,7 +53,7 @@ public class WinArea : MonoBehaviour
         winningObject.GetComponent<RandomSplit>().TimeBeforeNewSplit = 0.3f;
         node.Flower.SetActive(true);
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(8);
         SceneManager.LoadScene("VictoryScene");
     }
 }

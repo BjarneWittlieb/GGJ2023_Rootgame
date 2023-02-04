@@ -7,6 +7,8 @@ public class RootNode : MonoBehaviour
     public List<RootNode> Children;
     public RootNode       Parent;
 
+    public LineRenderer lineRenderer;
+
     private void OnDrawGizmos() {
         foreach (var x in Children)
             if (x)

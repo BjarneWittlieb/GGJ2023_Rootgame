@@ -6,6 +6,7 @@ using UnityEngine;
 public delegate void VoidCall();
 public class RootNode : MonoBehaviour
 {
+    public List<Vector2> IntermediatePoints; //Between Me and my Parent
     public List<RootNode> Children;
     public RootNode       Parent;
     public VoidCall       OnSplit;

@@ -29,25 +29,4 @@ public class CameraZoom : MonoBehaviour
         }
     }
 
-    private IEnumerator Lerp(float start, float end)
-    {
-        var t = 0f;
-
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        // while (virtualCamera.m_Lens.OrthographicSize != end)
-        // {
-        //     virtualCamera.m_Lens.OrthographicSize =  Mathf.Lerp(start, end, t);
-        //     t                                     += Time.deltaTime;
-        //     yield return null;
-        // }
-
-        for (var i = 0; i < 20; i++)
-        {
-            virtualCamera.m_Lens.OrthographicSize =  Mathf.Lerp(start, end, t);
-            t                                     += Time.deltaTime;
-            yield return null;
-        }
-
-        yield return null;
-    }
 }

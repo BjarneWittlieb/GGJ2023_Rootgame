@@ -18,6 +18,15 @@ public class NodePicker : MonoBehaviour
     private float _newRadius;
     private float _oldRadius;
 
+    public void setNewRadius(float newRadius)
+    {
+        //_oldRadius = marker.pointLightOuterRadius;
+        //_newRadius = newRadius;
+    }
+
+    public bool       draw;
+    public GameObject target;
+
     private void Update()
     {
         PickNodeInRange();
@@ -29,16 +38,12 @@ public class NodePicker : MonoBehaviour
     {
         if (target && draw)
         {
-            draw         = false;
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(marker.transform.position, target.transform.position);
+            // marker.pointLightOuterRadius = _newRadius;
+            return;
         }
-    }
-
-    public void setNewRadius(float newRadius)
-    {
-        _oldRadius = marker.pointLightOuterRadius;
-        _newRadius = newRadius;
+        // marker.pointLightOuterRadius = _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
+        _inTransition -= Time.deltaTime;
+        
     }
 
     public void TransitionMarkerRadius()

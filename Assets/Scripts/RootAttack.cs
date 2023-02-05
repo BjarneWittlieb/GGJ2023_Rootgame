@@ -43,6 +43,8 @@ public class RootAttack : MonoBehaviour {
                 for(int i = 0;i < potentialFoes.Length; i++) {
                     var foe = potentialFoes[i];
                     if (foe.collider.gameObject.GetComponent<IsFoe>()) {
+                        var deathParticles = foe.collider.gameObject.GetComponent<ParticlesOnDeath>();
+                        deathParticles.transform.rotation = transform.rotation;
                         Destroy(foe.collider.gameObject);
                     }
                 }

@@ -23,10 +23,10 @@ namespace Abilities
         
         public IEnumerator Cast(AbilityHolder holder)
         {
-            var image = GameObject.Find("Attack Active").GetComponent<Image>();
-            image.enabled = true;
             while (true)
             {
+                var image = GameObject.Find("Attack Active").GetComponent<Image>();
+                image.enabled = true;
                 picker = GameObject.Find("Player").GetComponent<NodePicker>();
 
 
@@ -57,6 +57,8 @@ namespace Abilities
                 {
                     // cancel on right click
                     image.enabled = false;
+                    directionIndicator.SetActive(false);
+                    State = AbilityStates.Ready;
                     break;
                 }
             

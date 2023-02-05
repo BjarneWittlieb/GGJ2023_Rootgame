@@ -61,7 +61,9 @@ namespace Abilities
                 if (Input.GetMouseButtonDown(1))
                 {
                     // cancel on right click
+                    directionIndicator.SetActive(false);
                     image.enabled = false;
+                    State = AbilityStates.Ready;
                     break;
                 }
             

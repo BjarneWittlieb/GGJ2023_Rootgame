@@ -6,6 +6,7 @@ public class RootAttack : MonoBehaviour {
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private float impactDuration = 0.4f;
 
+    public static bool attacking = false;
     public float speed = 0.3f;
     public float maxDistance = 7;
     bool charge = false;
@@ -29,6 +30,7 @@ public class RootAttack : MonoBehaviour {
             float dist = (startLocation - (Vector2)transform.position).magnitude;
             if (collider.Count > 0 || dist > maxDistance) {
                 charge = false;
+                attacking = false;
                 GetComponent<IsRootTip>().IsTip = false;
 
                 if (collider.Count != 0 && impactEffect) {
@@ -63,6 +65,7 @@ public class RootAttack : MonoBehaviour {
         GetComponent<IsRootTip>().IsTip = true;
         GetComponent<RootNode>().IsDead = true;
         charge = true;
+        attacking = true;
     }
 
     IEnumerator onImpactEffect() {

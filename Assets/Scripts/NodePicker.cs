@@ -35,8 +35,12 @@ public class NodePicker : MonoBehaviour
         }
     }
 
-    public void setNewRadius(float newRadius)
+    public void SetRadius(float newRadius)
     {
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (_oldRadius == newRadius)
+            return;
+        
         _oldRadius = marker.pointLightOuterRadius;
         _newRadius = newRadius;
     }

@@ -6,16 +6,16 @@ public class GrowDirectionController : MonoBehaviour
     public  Stamina    stamina;
     public  float      influenceMinValue = 0.05f;
     public  float      influenceMaxValue = .2f;
+    public  float      defaultWalkSpeed  = .5f;
     
     private RandomWalk randomWalk;
-    private float      originalWalkSpeed;
+    
 
     // Start is called before the first frame update
     private void Start()
     {
         stamina           = GameObject.Find("Player").GetComponent<Stamina>();
         randomWalk        = GetComponent<RandomWalk>();
-        originalWalkSpeed = randomWalk.walkSpeed;
     }
 
     // Update is called once per frame
@@ -26,6 +26,7 @@ public class GrowDirectionController : MonoBehaviour
         if ((mousePos - transform.position).magnitude > stamina.InfluenceRadius)
         {
             randomWalk.growInGeneralDirection = false;
+            randomWalk.walkSpeed              = defaultWalkSpeed;
             return;
         }
 
@@ -35,6 +36,6 @@ public class GrowDirectionController : MonoBehaviour
         randomWalk.growInGeneralDirection         = true;
         randomWalk.generalDirection               = targetVector;
         randomWalk.probabilityOfDirectionModifier = targetVector.magnitude / stamina.InfluenceRadius * (influenceMaxValue - influenceMinValue) + influenceMinValue;
-        randomWalk.walkSpeed                      = stamina.SpeedMultiplier * originalWalkSpeed;
+        randomWalk.walkSpeed                      = stamina.SpeedMultiplier * defaultWalkSpeed;
     }
 }

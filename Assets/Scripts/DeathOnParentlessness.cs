@@ -10,6 +10,7 @@ public class DeathOnParentlessness : MonoBehaviour
     public float timeTillDestruction = 0.5f;
     RootNode node;
     bool dying = false;
+    bool dead = false;
     GameObject particleEffects = null;
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,19 @@ public class DeathOnParentlessness : MonoBehaviour
 
         if (particleEffects)
             Destroy(particleEffects);
-
+        dead = true;
         Destroy(gameObject);
+    }
+
+    private void OnDestroy() {
+        if (dead)
+            return;
+        StopAllCoroutines();
+        if (particleEffects)
+            Destroy(particleEffects);
+    }
+
+    private void OnApplicationQuit() {
+        dead = true;
     }
 }

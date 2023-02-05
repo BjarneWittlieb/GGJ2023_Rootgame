@@ -18,12 +18,19 @@ public class IsFoe : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Root"))
+        try
         {
-            foreach (var x in collision.gameObject.GetComponent<RootNode>().Children)
-                x.Parent = null;
-            collision.gameObject.GetComponent<RootNode>().Parent.Children.Remove(collision.gameObject.GetComponent<RootNode>());
-            Destroy(collision.gameObject);
+            if (collision.gameObject.tag.Equals("Root"))
+            {
+                foreach (var x in collision.gameObject.GetComponent<RootNode>().Children)
+                    x.Parent = null;
+                if (collision.gameObject.GetComponent<RootNode>().Parent != null)
+                    collision.gameObject.GetComponent<RootNode>().Parent.Children.Remove(collision.gameObject.GetComponent<RootNode>());
+                Destroy(collision.gameObject);
+            }
         }
+        catch (System.Exception e) 
+        { }
+
     }
 }

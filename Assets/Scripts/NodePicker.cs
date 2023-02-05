@@ -23,8 +23,8 @@ public class NodePicker : MonoBehaviour
 
     public void setNewRadius(float newRadius)
     {
-        _oldRadius = marker.pointLightOuterRadius;
-        _newRadius = newRadius;
+        //_oldRadius = marker.pointLightOuterRadius;
+        //_newRadius = newRadius;
     }
 
     public bool       draw;
@@ -41,10 +41,10 @@ public class NodePicker : MonoBehaviour
     {
         if (_inTransition > transitionTime)
         {
-            marker.pointLightOuterRadius = _newRadius;
+            // marker.pointLightOuterRadius = _newRadius;
             return;
         }
-        marker.pointLightOuterRadius = _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
+        // marker.pointLightOuterRadius = _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
         _inTransition -= Time.deltaTime;
         
     }

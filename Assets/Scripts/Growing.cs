@@ -50,6 +50,8 @@ public class Growing : MonoBehaviour
     }
     public void branch() {
         var parent = node.Parent;
+        if (!parent)
+            return;
         parent.Children.Remove(node);
         Transform basket = (GameObject.Find("RootBasket")? GameObject.Find("RootBasket").transform:null);
         var newNodeObj = Instantiate(transform.gameObject, basket);

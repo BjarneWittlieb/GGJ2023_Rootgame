@@ -2191,14 +2191,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 603158326704967419, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 20.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 603158326704967419, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -11.99
-      objectReference: {fileID: 0}
     - target: {fileID: 645015754940974281, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.22
@@ -2206,22 +2198,6 @@ PrefabInstance:
     - target: {fileID: 645015754940974281, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
       propertyPath: m_LocalPosition.y
       value: -11.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 2834739536181032927, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2834739536181032927, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2834739536181032927, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2834739536181032927, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3747449814584674272, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2235,22 +2211,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1679393848}
-    - target: {fileID: 6715161996002743473, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715161996002743473, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[0]
-      value: -1980078117
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715161996002743473, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[1]
-      value: 672151461
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715161996002743473, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[2]
-      value: 1845158573
-      objectReference: {fileID: 0}
     - target: {fileID: 7005970674463773302, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2349,14 +2309,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7022009816921944093, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8225167141743034402, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8225167141743034402, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2979,6 +2931,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1919663645183351631, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765475713943421454, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
+      propertyPath: widthModifier
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 7924230944200129326, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
       propertyPath: m_RootOrder
       value: 6

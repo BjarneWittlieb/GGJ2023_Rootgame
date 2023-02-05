@@ -1,25 +1,22 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Timeline;
 
 public class NodePicker : MonoBehaviour
 {
-    [SerializeField] public Light2D marker;
+    [SerializeField] public  Light2D    marker;
     [SerializeField] private Camera     cam;
-    [SerializeField] private float      maxPickDist = 10;
-
-    private float _oldRadius;
-    private float _newRadius;
-
-    public float transitionTime = .1f;
-
+    [SerializeField] private float      maxPickDist    = 10;
+    public                   float      transitionTime = .1f;
+    public                   bool       draw;
+    public                   GameObject target;
+    
     /// <summary>
-    /// Value between 0 and transtionTIme
+    ///     Value between 0 and transtionTIme
     /// </summary>
     private float _inTransition;
+    private float _newRadius;
+    private float _oldRadius;
 
     public void setNewRadius(float newRadius)
     {
@@ -31,15 +28,15 @@ public class NodePicker : MonoBehaviour
     public GameObject target;
 
     private void Update()
-    { 
+    {
         PickNodeInRange();
 
         TransitionMarkerRadius();
     }
 
-    public void TransitionMarkerRadius()
+    private void OnDrawGizmos()
     {
-        if (_inTransition > transitionTime)
+        if (target && draw)
         {
             // marker.pointLightOuterRadius = _newRadius;
             return;
@@ -49,26 +46,28 @@ public class NodePicker : MonoBehaviour
         
     }
 
-    private void OnDrawGizmos()
+    public void TransitionMarkerRadius()
     {
-        if (target && draw)
+        if (_inTransition > transitionTime)
         {
-            draw         = false;
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(marker.transform.position, target.transform.position);
+            marker.pointLightOuterRadius = _newRadius;
+            return;
         }
+
+        marker.pointLightOuterRadius =  _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
+        _inTransition                -= Time.deltaTime;
     }
 
     private void PickNodeInRange()
     {
-        var mousePos = Vector3.Scale(cam.ScreenToWorldPoint(Input.mousePosition), new Vector3(1, 1, 0)); 
+        var mousePos = Vector3.Scale(cam.ScreenToWorldPoint(Input.mousePosition), new Vector3(1, 1, 0));
         // Debug.Log(mousePos);
         marker.transform.position = mousePos;
 
-        var        objects  = new List<GameObject>(GameObject.FindGameObjectsWithTag("Root"));
-        var        bestDist = float.PositiveInfinity;
+        var objects  = new List<GameObject>(GameObject.FindGameObjectsWithTag("Root"));
+        var bestDist = float.PositiveInfinity;
         target = null;
-        GameObject bestObj  = null;
+        GameObject bestObj = null;
 
         foreach (var x in objects)
         {

@@ -8,13 +8,6 @@ namespace Abilities
 {
     public class AbilityHolder : MonoBehaviour
     {
-        public enum AbilityStates
-        {
-            ReadyToUse = 0,
-            Cooldown   = 1
-        }
-
-        public                  AbilityStates CurrentAbilityState = AbilityStates.ReadyToUse;
         public                  UnityEvent    OnTriggerAbility;
         private                 Coroutine     handleAbilityUsage;
         
@@ -23,7 +16,7 @@ namespace Abilities
 
         public void TriggerAbility()
         {
-            if (CurrentAbilityState != AbilityStates.ReadyToUse)
+            if (Ability.State != AbilityStates.Ready)
                 return;
             
             handleAbilityUsage = StartCoroutine(HandleAbilityUsage_CO());
@@ -33,7 +26,7 @@ namespace Abilities
         {
             yield return null;
             Ability.Execute(this);
-            CurrentAbilityState = AbilityStates.Cooldown;
+            Ability.State = AbilityStates.Cooldown;
             OnTriggerAbility?.Invoke();
 
             if (!Ability.IsReady())
@@ -42,10 +35,10 @@ namespace Abilities
 
         private IEnumerator HandleAbiltyCheck_CO()
         {
-            var cooldown = Math.Ceiling(Ability.CooldownTimeLeft);
+            var cooldown = Math.Ceiling(Ability.Cooldown);
             yield return new WaitForSeconds((int)cooldown);
             
-            CurrentAbilityState = AbilityStates.ReadyToUse;
+            Ability.State = AbilityStates.Ready;
         }
     }
 }

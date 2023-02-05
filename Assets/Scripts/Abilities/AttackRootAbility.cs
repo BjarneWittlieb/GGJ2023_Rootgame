@@ -61,8 +61,9 @@ namespace Abilities
         
         private void Attack(AbilityHolder holder, GameObject rootTarget)
         {
-            if (rootTarget.GetComponent<RootAttack>() is RootAttack rootAttack)
+            if (rootTarget.GetComponent<RootAttack>() is RootAttack rootAttack && rootTarget.GetComponent<RootNode>().Parent)
             {
+                
                 rootAttack.attack(picker.marker.transform.position);
                 audio.Play();
                 StartCooldown();

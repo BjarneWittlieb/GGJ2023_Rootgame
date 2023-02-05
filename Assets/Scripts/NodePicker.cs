@@ -2,13 +2,30 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Timeline;
 
 public class NodePicker : MonoBehaviour
 {
-    [SerializeField] public GameObject marker;
+    [SerializeField] public Light2D marker;
     [SerializeField] private Camera     cam;
     [SerializeField] private float      maxPickDist = 10;
+
+    private float _oldRadius;
+    private float _newRadius;
+
+    public float transitionTime = .1f;
+
+    /// <summary>
+    /// Value between 0 and transtionTIme
+    /// </summary>
+    private float _inTransition;
+
+    public void setNewRadius(float newRadius)
+    {
+        _oldRadius = marker.pointLightOuterRadius;
+        _newRadius = newRadius;
+    }
 
     public bool       draw;
     public GameObject target;
@@ -16,6 +33,20 @@ public class NodePicker : MonoBehaviour
     private void Update()
     { 
         PickNodeInRange();
+
+        TransitionMarkerRadius();
+    }
+
+    public void TransitionMarkerRadius()
+    {
+        if (_inTransition > transitionTime)
+        {
+            marker.pointLightOuterRadius = _newRadius;
+            return;
+        }
+        marker.pointLightOuterRadius = _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
+        _inTransition -= Time.deltaTime;
+        
     }
 
     private void OnDrawGizmos()

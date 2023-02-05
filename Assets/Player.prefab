@@ -149,7 +149,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 851280370eaf6d54292b1940beb77832, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d5c086a6a74d14943bc8b6b16df85192, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -362,7 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3417bc9941e844ec8a8808c30292c12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentAbilityState: 0
   OnTriggerAbility:
     m_PersistentCalls:
       m_Calls: []
@@ -415,13 +414,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cooldown: 5
   CooldownTimeLeft: 1
-  isCooldown: 0
   RequiredResource: {fileID: 0}
   ResourceCost: 0
   AbilityIcon: {fileID: 0}
   Name: 
   Code: 50
   audio: {fileID: 3650353613491734079}
+  directionIndicator: {fileID: 0}
 --- !u!1 &6327846743901477858
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3417bc9941e844ec8a8808c30292c12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentAbilityState: 0
   OnTriggerAbility:
     m_PersistentCalls:
       m_Calls: []
@@ -551,13 +549,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cooldown: 1
   CooldownTimeLeft: 1
-  isCooldown: 0
   RequiredResource: {fileID: 0}
   ResourceCost: 0
   AbilityIcon: {fileID: 0}
   Name: 
   Code: 49
   audio: {fileID: 3439843627255592710}
+  directionIndicator: {fileID: 0}
 --- !u!1 &7686777509384818274
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +598,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 19baa206257f04a44a472502882f9ccc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5586fdb500df4e843ba1cc4025f1741c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.352
   m_Pitch: 1

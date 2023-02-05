@@ -415,13 +415,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf578e4270c44c4b0edbab8c6c2a5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaSlider: {fileID: 0}
   chargeRate: 3
   drainRate: 10
   maxStamina: 100
   cursor: {fileID: 6327846743301721387}
-  baseInfluenceRadius: 3
-  onChargeRadiusMultiplier: 5
-  onChargeSpeedMultiplier: 2
+  baseInfluenceRadius: 7
+  onChargeRadiusMultiplier: 1
+  onChargeSpeedMultiplier: 3
 --- !u!1 &6327846743599666892
 GameObject:
   m_ObjectHideFlags: 0

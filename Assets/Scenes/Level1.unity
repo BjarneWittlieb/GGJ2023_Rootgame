@@ -463,7 +463,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1.0758942, y: 0.9282692}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -509,11 +509,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8163627911355474114, guid: 3439c7d50fd451e4f933187553015a0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.27
+      value: 21.61
       objectReference: {fileID: 0}
     - target: {fileID: 8163627911355474114, guid: 3439c7d50fd451e4f933187553015a0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.52
+      value: -6.47
       objectReference: {fileID: 0}
     - target: {fileID: 8163627911355474114, guid: 3439c7d50fd451e4f933187553015a0b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1252,7 +1252,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 9.743823, y: 5.9827685}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

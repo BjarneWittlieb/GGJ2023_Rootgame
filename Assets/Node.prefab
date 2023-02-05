@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 2503219977412129867}
   - component: {fileID: 1915672843159873618}
   - component: {fileID: 6047352875567588602}
+  - component: {fileID: 850474438896645264}
   m_Layer: 7
   m_Name: Node
   m_TagString: Root
@@ -212,6 +213,9 @@ MonoBehaviour:
   progressChance: 0.05
   gravity: {x: 0, y: -0.03}
   walkSpeed: 0.05
+  probabilityOfDirectionModifier: 0.07
+  generalDirection: {x: -1, y: 0}
+  growInGeneralDirection: 1
 --- !u!114 &7667332903276833629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +316,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0651460951692c4483cc6f2508c1eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &850474438896645264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019861488543651140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47618656849b6584b86f494757642e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseInfluenceRadius: 10
+  influenceMinValue: 0.05
+  influenceMaxValue: 0.2
+  totalStamina: 0.5
+  onChargeRadiusMultiplier: 5
+  onChargeSpeedMultiplier: 2.5
 --- !u!1 &4735641509479892960
 GameObject:
   m_ObjectHideFlags: 0

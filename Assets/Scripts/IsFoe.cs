@@ -22,6 +22,10 @@ public class IsFoe : MonoBehaviour
         //{
             if (collision.gameObject.tag.Equals("Root"))
             {
+
+                if (collision.gameObject.GetComponent<RootAttack>().isCharging())
+                    return;
+
                 foreach (var x in collision.gameObject.GetComponent<RootNode>().Children)
                     x.Parent = null;
                 if (collision.gameObject.GetComponent<RootNode>().Parent != null)

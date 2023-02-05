@@ -24,8 +24,8 @@ public class NodePicker : MonoBehaviour
         //_newRadius = newRadius;
     }
 
-    public bool       draw;
-    public GameObject target;
+    //public bool       draw;
+    //public GameObject target;
 
     private void Update()
     {
@@ -50,11 +50,11 @@ public class NodePicker : MonoBehaviour
     {
         if (_inTransition > transitionTime)
         {
-            marker.pointLightOuterRadius = _newRadius;
+            //marker.pointLightOuterRadius = _newRadius;
             return;
         }
 
-        marker.pointLightOuterRadius =  _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
+        //marker.pointLightOuterRadius =  _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
         _inTransition                -= Time.deltaTime;
     }
 

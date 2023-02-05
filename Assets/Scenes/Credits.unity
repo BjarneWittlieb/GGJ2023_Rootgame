@@ -182,7 +182,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootContainer (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1189663577469194330, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
 --- !u!1 &984406585
 GameObject:
@@ -311,7 +312,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootContainer (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1189663577469194330, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
 --- !u!1 &1354829134
 GameObject:
@@ -798,7 +800,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootContainer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1189663577469194330, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
 --- !u!1 &1664679980
 GameObject:
@@ -858,25 +861,27 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Credits:
+  m_text: 'Das Team ''The Legend of LINQ'':
 
-    ''Corny'' Cornelius
 
-    ''Magic Casi'' Carsten
+    Cornelius ''Cnork'' Armbrust
 
-    Gordon
+    Carsten
+    ''Magic Casi'' Muhsfeldt
 
-    Bjarne
-    ''Bee''
+    Gordon ''Alanox'' Bergmann
 
-    ''Fabulous Prefab'' Fabi
+    Bjarne ''Bee''
+    Wittlieb
 
-    Holger ''Get Your Beat'' Fritzsche
+    Fabian ''Fabulous Prefab'' Meinert2
 
-    Niclas
+    Holger ''Get Your Beat''
+    Fritzsche
 
-    Nicolas
-    ''Nico'' Harttig
+    Niclas ''Nicci'' Gambal
+
+    Nicolas ''Nico'' Harttig
 
 '
   m_isRightToLeft: 0
@@ -1014,7 +1019,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootContainer (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1189663577469194330, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
 --- !u!1 &2071728583
 GameObject:
@@ -1054,7 +1060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 81.100006, y: 14.899994}
+  m_AnchoredPosition: {x: 81.099976, y: 14.900024}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071728585

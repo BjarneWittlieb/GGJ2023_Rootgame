@@ -24,17 +24,17 @@ public class SearchForRoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D overlapRight = Physics2D.Raycast(transform.position, Vector3.right, Mathf.Infinity, LayerMask.NameToLayer("RootInfluence"));
-
-        if (overlapRight.collider != null)
+        if (Physics2D.Raycast(transform.position, Vector3.right, Mathf.Infinity, LayerMask.GetMask("Root")).collider != null)
         {
-            float xSpeed = walkLeft ? -walkSpeed : walkSpeed;
-
-            body.velocity = new Vector2(xSpeed, body.velocity.y);
-            var bot = transform.position + new Vector3(0, col.bounds.extents[1], 0);
-
-            var start = bot + new Vector3(CliffPeekDistance * Mathf.Sign(xSpeed), 0, 0);
-            RaycastHit2D hit = Physics2D.Linecast(start, start + new Vector3(0, -2, 0), LayerMask.GetMask("Wall"));
+            WalkRight();
+        }
+        else if (Physics2D.Raycast(transform.position, Vector3.left, Mathf.Infinity, LayerMask.GetMask("Root")).collider != null)
+        {
+            WalkLeft();
+        }
+        else if (Physics2D.Raycast(transform.position, Vector3.up, Mathf.Infinity, LayerMask.GetMask("Root")).collider != null)
+        {
+            body.velocity = new Vector2(0, 10);
         }
         else
         {
@@ -50,6 +50,19 @@ public class SearchForRoot : MonoBehaviour
         }
 
 
+        void WalkLeft()
+        {
+            walkLeft = true;
+            float xSpeed = walkLeft ? -walkSpeed : walkSpeed;
+            body.velocity = new Vector2(xSpeed, body.velocity.y);
+        }
+
+        void WalkRight()
+        {
+            walkLeft = false;
+            float xSpeed = walkLeft ? -walkSpeed : walkSpeed;
+            body.velocity = new Vector2(xSpeed, body.velocity.y);
+        }
 
     }
 }

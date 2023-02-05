@@ -14,6 +14,8 @@ public class GrowDirectionController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        if (!GameObject.Find("Player"))
+            return;
         stamina           = GameObject.Find("Player").GetComponent<Stamina>();
         randomWalk        = GetComponent<RandomWalk>();
     }
@@ -21,6 +23,8 @@ public class GrowDirectionController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!stamina)
+            return;
         var mousePos = stamina.cursor.marker.transform.position;
 
         if ((mousePos - transform.position).magnitude > stamina.InfluenceRadius)

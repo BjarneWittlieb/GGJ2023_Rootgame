@@ -182,7 +182,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootContainer (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1189663577469194330, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
 --- !u!1 &984406585
 GameObject:
@@ -311,7 +312,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootContainer (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1189663577469194330, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
 --- !u!1 &1354829134
 GameObject:
@@ -798,7 +800,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootContainer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1189663577469194330, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
 --- !u!1 &1664679980
 GameObject:
@@ -858,10 +861,29 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Das Team 'The Legend of LINQ':\n\nCornelius 'Cnork' Armbrust\nCarsten
-    'Magic Casi' Muhsfeldt\nGordon 'Alanox' Bergmann\nBjarne 'Bee' Wittlieb\nFabian
-    'Fabulous Prefab' Meinert2\nHolger 'Get Your Beat' Fritzsche\nNiclas 'Nicci'  
-    \nNicolas 'Nico' Harttig\n"
+  m_text: 'Das Team ''The Legend of LINQ'':
+
+
+    Cornelius ''Cnork'' Armbrust
+
+    Carsten
+    ''Magic Casi'' Muhsfeldt
+
+    Gordon ''Alanox'' Bergmann
+
+    Bjarne ''Bee''
+    Wittlieb
+
+    Fabian ''Fabulous Prefab'' Meinert2
+
+    Holger ''Get Your Beat''
+    Fritzsche
+
+    Niclas ''Nicci'' Gambal
+
+    Nicolas ''Nico'' Harttig
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -997,7 +1019,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootContainer (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1189663577469194330, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
 --- !u!1 &2071728583
 GameObject:

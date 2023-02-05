@@ -25,7 +25,6 @@ namespace DefaultNamespace
         {
             ChargeStamina();
             ProcessInputs();
-            Debug.Log(currentStamina +", " + InfluenceRadius);
         }
 
         private void ChargeStamina()

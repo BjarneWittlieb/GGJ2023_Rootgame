@@ -26,7 +26,7 @@ public class RootDrawer : MonoBehaviour
     // Update is called once per frame
 
     IEnumerator customUpdate() {
-        while (true) {
+        while (theMostParentParent) {
             widthModifierStatic = widthModifier;
             //theMostParentParent.UpdateCurrentLength();
             DrawNewTree();
@@ -94,7 +94,7 @@ public class RootDrawer : MonoBehaviour
             lineRenderer.useWorldSpace = true;
             lineRenderer.positionCount = 0;
         }
-//         lineRenderer.enabled = startNode != endNode;
+         //lineRenderer.enabled = startNode != endNode;
 
         List<RootNode> nodes = GetBranch(startNode, endNode);
         List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();

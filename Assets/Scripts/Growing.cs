@@ -35,6 +35,12 @@ public class Growing : MonoBehaviour
         if (node.IntermediatePoints.Count > 0)
             a = node.IntermediatePoints[node.IntermediatePoints.Count - 1];
 
+        if (node.Parent) {
+            RaycastHit2D mauerhit = Physics2D.Linecast(transform.position, node.Parent.transform.position, LayerMask.GetMask("Wall"));
+            if (mauerhit)
+                return false;
+        }
+
         return (a - b).magnitude > tip.SplitDistance;
     }
 

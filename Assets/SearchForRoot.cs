@@ -21,18 +21,26 @@ public class SearchForRoot : MonoBehaviour
         walkLeft = Random.value < 0.5f;
     }
 
+    bool findRoot(Vector3 dir) {
+        var root = Physics2D.Raycast(transform.position, dir, Mathf.Infinity, LayerMask.GetMask("Root"));
+        var wall = Physics2D.Raycast(transform.position, dir, Mathf.Infinity, LayerMask.GetMask("Wall"));
+        if (wall && root && wall.distance < root.distance)
+            return false;
+        return root.collider;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Physics2D.Raycast(transform.position, Vector3.right, Mathf.Infinity, LayerMask.GetMask("Root")).collider != null)
+        if (findRoot(Vector3.right))
         {
             WalkRight();
         }
-        else if (Physics2D.Raycast(transform.position, Vector3.left, Mathf.Infinity, LayerMask.GetMask("Root")).collider != null)
+        else if (findRoot(Vector3.left))
         {
             WalkLeft();
         }
-        else if (Physics2D.Raycast(transform.position, Vector3.up, Mathf.Infinity, LayerMask.GetMask("Root")).collider != null)
+        else if (findRoot(Vector3.up))
         {
             body.velocity = new Vector2(0, 10);
         }

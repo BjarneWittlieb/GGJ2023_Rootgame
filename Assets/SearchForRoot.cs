@@ -45,7 +45,8 @@ public class SearchForRoot : MonoBehaviour
 
             var start = bot + new Vector3(CliffPeekDistance * Mathf.Sign(xSpeed), 0, 0);
             RaycastHit2D hit = Physics2D.Linecast(start, start + new Vector3(0, -2, 0), LayerMask.GetMask("Wall"));
-            if (!hit)
+            RaycastHit2D mauerhit = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.5f * Mathf.Sign(xSpeed), 0, 0), LayerMask.GetMask("Wall"));
+            if (!hit || mauerhit)
                 walkLeft = !walkLeft;
         }
 

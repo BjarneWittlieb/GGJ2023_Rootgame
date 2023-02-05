@@ -47,7 +47,7 @@ public class RootDrawer : MonoBehaviour
     private void DrawRootNode(RootNode rootNode)
     {
         RootNode endNode = FindNextSplitterOrEnd(rootNode);
-        if (rootNode != endNode)
+        //if (rootNode != endNode)
            DrawBranch(rootNode, endNode, false);
 
         foreach (var child in endNode.Children.Where(c => c != null))
@@ -94,7 +94,7 @@ public class RootDrawer : MonoBehaviour
             lineRenderer.useWorldSpace = true;
             lineRenderer.positionCount = 0;
         }
-
+//         lineRenderer.enabled = startNode != endNode;
 
         List<RootNode> nodes = GetBranch(startNode, endNode);
         List<Vector3> vecs = nodes.SelectMany(GetPositions).ToList();

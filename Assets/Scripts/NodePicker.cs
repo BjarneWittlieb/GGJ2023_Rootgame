@@ -18,8 +18,12 @@ public class NodePicker : MonoBehaviour
     private float _newRadius;
     private float _oldRadius;
 
-    public void setNewRadius(float newRadius)
+    public void SetRadius(float newRadius)
     {
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if(newRadius == _oldRadius)
+            return;
+        
         //_oldRadius = marker.pointLightOuterRadius;
         //_newRadius = newRadius;
     }

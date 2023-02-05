@@ -8,6 +8,7 @@ namespace Abilities
     public class AttackRootAbility : BaseAbility
     {
         private NodePicker picker;
+        public GameObject directionIndicator;
         public void OnEnable()
         {
             RequiredResource = ScriptableObject.CreateInstance<Mana>();
@@ -24,6 +25,23 @@ namespace Abilities
             while (true)
             {
                 picker = GameObject.Find("Player").GetComponent<NodePicker>();
+
+
+                var currentTarget = picker.target;
+                if (currentTarget) {
+
+                    directionIndicator.SetActive(true);
+                    directionIndicator.transform.position = currentTarget.transform.position;
+                    Vector3 mouseP = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    mouseP.z = currentTarget.transform.position.z;
+                    float angle = Vector2.SignedAngle(new Vector2(0, 1), (mouseP - currentTarget.transform.position).normalized);
+                    directionIndicator.transform.eulerAngles = new Vector3(0, 0, angle);
+                }
+                else {
+                    directionIndicator.SetActive(false);
+                }
+
+
                 // cast on leftclick
                 if (Input.GetMouseButtonDown(0) && picker.target is GameObject target)
                 {
@@ -49,6 +67,7 @@ namespace Abilities
                 audio.Play();
                 StartCooldown();
             }
+            directionIndicator.SetActive(false);
         }
     }
 }

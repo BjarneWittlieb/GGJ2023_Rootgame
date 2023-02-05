@@ -424,6 +424,7 @@ MonoBehaviour:
   Name: 
   Code: 50
   audio: {fileID: 3650353613491734079}
+  directionIndicator: {fileID: 6475621783675147124}
 --- !u!1 &6327846743901477858
 GameObject:
   m_ObjectHideFlags: 0

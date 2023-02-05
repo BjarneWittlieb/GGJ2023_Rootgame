@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47618656849b6584b86f494757642e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 7117695144931304341, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
   mouseInfluenceRadius: 10
   influenceMinValue: 0.05
   influenceMaxValue: 0.2

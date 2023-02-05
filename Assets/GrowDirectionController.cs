@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GrowDirectionController : MonoBehaviour
 {
     private RandomWalk _randomWalk;
+
+    public NodePicker cursor;
 
     public float mouseInfluenceRadius = 3f;
 
@@ -65,6 +68,7 @@ public class GrowDirectionController : MonoBehaviour
             if (!_clickedBefore)
             {
                 _clickedBefore = true;
+                cursor.setNewRadius(mouseInfluenceRadius * onChargeRadiusMultiplier);
             }
             else
             {
@@ -81,6 +85,7 @@ public class GrowDirectionController : MonoBehaviour
             if (_clickedBefore)
             {
                 _clickedBefore = false;
+                cursor?.setNewRadius(mouseInfluenceRadius);
             }
             else
             {

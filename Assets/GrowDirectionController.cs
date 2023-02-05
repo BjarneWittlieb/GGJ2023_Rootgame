@@ -13,6 +13,7 @@ public class GrowDirectionController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        stamina           = GameObject.Find("Player").GetComponent<Stamina>();
         randomWalk        = GetComponent<RandomWalk>();
         originalWalkSpeed = randomWalk.walkSpeed;
     }

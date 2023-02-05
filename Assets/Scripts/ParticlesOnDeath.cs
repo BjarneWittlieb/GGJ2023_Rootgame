@@ -16,7 +16,6 @@ public class ParticlesOnDeath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

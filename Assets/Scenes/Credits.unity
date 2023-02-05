@@ -858,27 +858,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Credits:
-
-    ''Corny'' Cornelius
-
-    ''Magic Casi'' Carsten
-
-    Gordon
-
-    Bjarne
-    ''Bee''
-
-    ''Fabulous Prefab'' Fabi
-
-    Holger ''Get Your Beat'' Fritzsche
-
-    Niclas
-
-    Nicolas
-    ''Nico'' Harttig
-
-'
+  m_text: "Das Team 'The Legend of LINQ':\nCornelius 'Cnork' Armbrust\nCarsten 'Magic
+    Casi' Muhsfeldt\nGordon 'Alanox' Bergmann\nBjarne 'Bee' Wittlieb\nFabian 'Fabulous
+    Prefab' Meinert2\nHolger 'Get Your Beat' Fritzsche\nNiclas 'Nicci'   \nNicolas
+    'Nico' Harttig\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1054,7 +1037,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 81.100006, y: 14.899994}
+  m_AnchoredPosition: {x: 81.099976, y: 14.900024}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071728585

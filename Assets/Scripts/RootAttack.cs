@@ -17,6 +17,10 @@ public class RootAttack : MonoBehaviour {
         
     }
 
+    public bool isCharging() {
+        return charge;
+    }
+
     // Update is called once per frame
     void Update()
     {

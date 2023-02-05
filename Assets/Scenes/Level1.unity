@@ -2199,6 +2199,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -11.66
       objectReference: {fileID: 0}
+    - target: {fileID: 3747449814584674272, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747449814584674272, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6225194602707242319, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
       propertyPath: cam
       value: 
@@ -2290,6 +2298,18 @@ PrefabInstance:
     - target: {fileID: 7005970675170316495, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
       propertyPath: m_LocalPosition.z
       value: -10.468511
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022009816921944093, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022009816921944093, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022009816921944093, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a822f791c986fa94abdd0ec02ae3b944, type: 3}
@@ -2911,6 +2931,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1919663645183351631, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765475713943421454, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
+      propertyPath: widthModifier
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 7924230944200129326, guid: 931940e1a42e7ae49946d0bd20122d1c, type: 3}
       propertyPath: m_RootOrder
       value: 6

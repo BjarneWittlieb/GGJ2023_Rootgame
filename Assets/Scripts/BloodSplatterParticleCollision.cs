@@ -29,6 +29,10 @@ public class BloodSplatterParticleCollision : MonoBehaviour
         int count = collisionEvents.Count;
         for (int i = 0; i < count; i++)
         {
+            if(Random.Range(0, 3) > 0)
+            {
+                continue;
+            }
             Instantiate(
                 original: splatPrefabs[Random.Range(0, splatPrefabs.Count)], 
                 position: collisionEvents[i].intersection, 

@@ -7,12 +7,15 @@ public class ParticlesOnDeath : MonoBehaviour
     
     [SerializeField] private GameObject effect;
 
+    [SerializeField] public AudioClip deathSound;
+    
+    AudioSource _audioSource;
+
     bool isQuitting = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -26,6 +29,7 @@ public class ParticlesOnDeath : MonoBehaviour
         if (isQuitting)
             return;
         var x = Instantiate(effect);
+        effect.GetComponent<AudioSource>().Play();
         x.transform.position = transform.position;
         ButtonPressSIngleton.playButtonClick();
     }

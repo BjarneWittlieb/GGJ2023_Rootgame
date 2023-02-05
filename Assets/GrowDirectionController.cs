@@ -16,6 +16,7 @@ public class GrowDirectionController : MonoBehaviour
     {
         if (!GameObject.Find("Player"))
             return;
+        
         stamina           = GameObject.Find("Player").GetComponent<Stamina>();
         randomWalk        = GetComponent<RandomWalk>();
     }

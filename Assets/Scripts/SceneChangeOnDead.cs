@@ -23,6 +23,8 @@ public class SceneChangeOnDead : MonoBehaviour
         endGame = true;
     }
     private void OnDestroy() {
+        if (WinArea.winning)
+            return;
         if (endGame)
             return;
         SceneManager.LoadScene(sceneName);

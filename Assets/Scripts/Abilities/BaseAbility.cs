@@ -47,8 +47,7 @@ namespace Abilities
 
         private void UpdateIcon()
         {
-            var schonUm = Cooldown - CooldownTimeLeft;
-            AbilityIcon.fillAmount = schonUm / Cooldown;
+            AbilityIcon.fillAmount = CooldownTimeLeft / Cooldown;
         }
 
         public void StartCooldown()

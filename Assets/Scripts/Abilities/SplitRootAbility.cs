@@ -16,8 +16,6 @@ namespace Abilities
         public void OnEnable()
         {
             picker           = GameObject.Find("Player").GetComponent<NodePicker>();
-            Cooldown         = 10;
-            CooldownTimeLeft = 10;
             RequiredResource = ScriptableObject.CreateInstance<Mana>();
             ResourceCost     = 40;
         }

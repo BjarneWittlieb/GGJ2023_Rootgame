@@ -1,13 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
     public class Stamina : MonoBehaviour
     {
         private float currentStamina;
-        
+
+        public Image     staminaSlider;
         public int        chargeRate = 3;
         public int        drainRate  = 10;
         public float      maxStamina = 100f;
@@ -25,6 +27,7 @@ namespace DefaultNamespace
         {
             ChargeStamina();
             ProcessInputs();
+            staminaSlider.fillAmount = 1 - (currentStamina / maxStamina);
             // Debug.Log(currentStamina +", " + InfluenceRadius);
         }
 

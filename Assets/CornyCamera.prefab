@@ -719,6 +719,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7005970674463773302}
     m_Modifications:
+    - target: {fileID: 5769781552995386372, guid: 641d86c1e50ff8b4ba017136074d543e, type: 3}
+      propertyPath: staminaSlider
+      value: 
+      objectReference: {fileID: 288341339392860085}
     - target: {fileID: 6327846743301721385, guid: 641d86c1e50ff8b4ba017136074d543e, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1175,6 +1179,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eca27a8a337f69448a1c515b8044d24c, type: 3}
+--- !u!114 &288341339392860085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7818936265654817118, guid: eca27a8a337f69448a1c515b8044d24c, type: 3}
+  m_PrefabInstance: {fileID: 7530605650931617515}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7484128569312202285 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1107571834865369286, guid: eca27a8a337f69448a1c515b8044d24c, type: 3}

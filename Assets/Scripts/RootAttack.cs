@@ -44,7 +44,8 @@ public class RootAttack : MonoBehaviour {
                     var foe = potentialFoes[i];
                     if (foe.collider.gameObject.GetComponent<IsFoe>()) {
                         var deathParticles = foe.collider.gameObject.GetComponent<ParticlesOnDeath>();
-                        deathParticles.transform.rotation = transform.rotation;
+                        deathParticles.transform.rotation = transform.rotation * Quaternion.Euler(0f, 0f, -90f);
+                        foe.collider.GetComponent<AudioSource>
                         Destroy(foe.collider.gameObject);
                     }
                 }

@@ -35,8 +35,7 @@ namespace Abilities
                 {
                     Split(currentTarget);
                     audio.Play();
-                    holder.Ability.isCooldown = true;
-                    holder.Ability.AbilityIcon.fillAmount = 1;
+                    StartCooldown();
                     break;
                 }
                 
@@ -50,12 +49,6 @@ namespace Abilities
                 yield return null;
             }
         }
-
-        // public IEnumerator DrawTarget()
-        // {
-        //     picker.DrawTargetIndicator();
-        //     yield return null;
-        // }
 
         private void Split(GameObject currentTarget)
         {

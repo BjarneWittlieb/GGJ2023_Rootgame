@@ -2,6 +2,7 @@
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Abilities
 {
@@ -9,7 +10,6 @@ namespace Abilities
     {
         public float Cooldown;
         public float CooldownTimeLeft;
-        public bool isCooldown;
         
         [SerializeField] public BaseRessource RequiredResource;
         [SerializeField] public int           ResourceCost;
@@ -18,32 +18,43 @@ namespace Abilities
         [SerializeField] public KeyCode Code;
         [SerializeField] public AudioSource audio;
 
+        public AbilityStates State { get; set; }
+
         public abstract void Execute(AbilityHolder holder);
+        
+        public void Start()
+        {
+            State = CooldownTimeLeft > 0 ? AbilityStates.Cooldown : AbilityStates.Ready;
+            UpdateCooldown();
+        }
 
         public void Update()
         {
-            CheckCooldown();
+            UpdateCooldown();
         }
 
-        private void CheckCooldown()
+        private void UpdateCooldown()
         { 
-            if (isCooldown)
+            if (CooldownTimeLeft > 0)
             {
-                AbilityIcon.fillAmount -= 1 / Cooldown * Time.deltaTime;
+                CooldownTimeLeft = Math.Max(0, CooldownTimeLeft - Time.deltaTime);
+                UpdateIcon();
 
-                if (AbilityIcon.fillAmount <= 0)
-                {
-                    AbilityIcon.fillAmount = 0;
-                    isCooldown = false;
-                }
+                if (CooldownTimeLeft == 0)
+                    State = AbilityStates.Ready;
             }
         }
 
-        public void Start()
+        private void UpdateIcon()
         {
-            AbilityIcon.fillAmount = 1;
-            isCooldown = true;
-            CheckCooldown();
+            var schonUm = Cooldown - CooldownTimeLeft;
+            AbilityIcon.fillAmount = schonUm / Cooldown;
+        }
+
+        public void StartCooldown()
+        {
+            State            = AbilityStates.Cooldown;
+            CooldownTimeLeft = Cooldown;
         }
 
         public bool IsReady()

@@ -30,8 +30,7 @@ namespace Abilities
             {
                 rootAttack.attack(picker.marker.transform.position);
                 audio.Play();
-                holder.Ability.isCooldown = true;
-                holder.Ability.AbilityIcon.fillAmount = 1;
+                StartCooldown();
             }
         }
     }

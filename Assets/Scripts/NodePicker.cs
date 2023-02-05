@@ -18,6 +18,15 @@ public class NodePicker : MonoBehaviour
     private float _newRadius;
     private float _oldRadius;
 
+    public void setNewRadius(float newRadius)
+    {
+        //_oldRadius = marker.pointLightOuterRadius;
+        //_newRadius = newRadius;
+    }
+
+    //public bool       draw;
+    //public GameObject target;
+
     private void Update()
     {
         PickNodeInRange();
@@ -29,31 +38,23 @@ public class NodePicker : MonoBehaviour
     {
         if (target && draw)
         {
-            draw         = false;
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(marker.transform.position, target.transform.position);
-        }
-    }
-
-    public void SetRadius(float newRadius)
-    {
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        if (_oldRadius == newRadius)
+            // marker.pointLightOuterRadius = _newRadius;
             return;
+        }
+        // marker.pointLightOuterRadius = _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
+        _inTransition -= Time.deltaTime;
         
-        _oldRadius = marker.pointLightOuterRadius;
-        _newRadius = newRadius;
     }
 
     public void TransitionMarkerRadius()
     {
         if (_inTransition > transitionTime)
         {
-            marker.pointLightOuterRadius = _newRadius;
+            //marker.pointLightOuterRadius = _newRadius;
             return;
         }
 
-        marker.pointLightOuterRadius =  _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
+        //marker.pointLightOuterRadius =  _oldRadius + (_newRadius - _oldRadius) * (_inTransition / transitionTime);
         _inTransition                -= Time.deltaTime;
     }
 

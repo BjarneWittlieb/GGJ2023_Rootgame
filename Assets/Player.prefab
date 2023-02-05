@@ -233,7 +233,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 851280370eaf6d54292b1940beb77832, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b170d6e158febcd46b44ae357e757aee, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 6327846743301721384}
   - component: {fileID: 6327846743301721386}
   - component: {fileID: 6327846743301721387}
+  - component: {fileID: 5769781552995386372}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -402,6 +403,25 @@ MonoBehaviour:
   transitionTime: 0.1
   draw: 0
   target: {fileID: 0}
+--- !u!114 &5769781552995386372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327846743301721390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf578e4270c44c4b0edbab8c6c2a5f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeRate: 3
+  drainRate: 10
+  maxStamina: 100
+  cursor: {fileID: 6327846743301721387}
+  baseInfluenceRadius: 3
+  onChargeRadiusMultiplier: 5
+  onChargeSpeedMultiplier: 2
 --- !u!1 &6327846743599666892
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +703,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 19baa206257f04a44a472502882f9ccc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5586fdb500df4e843ba1cc4025f1741c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.352
   m_Pitch: 1

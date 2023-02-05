@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2449372297801133255}
   - component: {fileID: 5735742459217673740}
   - component: {fileID: 7150496714513189740}
+  - component: {fileID: 8403703499930722296}
   m_Layer: 0
   m_Name: Blood Splatter Particle Effect
   m_TagString: Untagged
@@ -170,8 +171,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 9
+      minScalar: 7
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -663,7 +664,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 52.11
+    angle: 25.4
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -978,8 +979,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 100
-        minScalar: 40
+        scalar: 160
+        minScalar: 80
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -4886,3 +4887,16 @@ MonoBehaviour:
   splatPrefabs:
   - {fileID: 420333217054466175, guid: 6692c8ed989184846ad4a168cd3aca2e, type: 3}
   splatHolder: {fileID: 0}
+--- !u!114 &8403703499930722296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343277898582594732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c882811a57fdd945b79ed37123c6309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 4

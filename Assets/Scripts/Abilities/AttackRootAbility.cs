@@ -2,6 +2,7 @@
 using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Abilities
 {
@@ -24,6 +25,8 @@ namespace Abilities
         {
             while (true)
             {
+                var image = GameObject.Find("Attack Active").GetComponent<Image>();
+                image.enabled = true;
                 picker = GameObject.Find("Player").GetComponent<NodePicker>();
 
 
@@ -45,6 +48,7 @@ namespace Abilities
                 // cast on leftclick
                 if (Input.GetMouseButtonDown(0) && picker.target is GameObject target)
                 {
+                    image.enabled = false;
                     Attack(holder, target);
                     break;
                 }
@@ -52,6 +56,9 @@ namespace Abilities
                 if (Input.GetMouseButtonDown(1))
                 {
                     // cancel on right click
+                    image.enabled = false;
+                    directionIndicator.SetActive(false);
+                    State = AbilityStates.Ready;
                     break;
                 }
             

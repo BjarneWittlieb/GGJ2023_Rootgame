@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Abilities
 {
@@ -28,6 +29,8 @@ namespace Abilities
 
         public IEnumerator Cast(AbilityHolder holder)
         {
+            var image = GameObject.Find("Split Active").GetComponent<Image>();
+            image.enabled = true;
             while (true)
             {
                 var currentTarget = picker.target;
@@ -48,6 +51,7 @@ namespace Abilities
                 // cast on leftclick
                 if (Input.GetMouseButtonDown(0) && currentTarget)
                 {
+                    image.enabled = false;
                     Split(currentTarget);
                     audio.Play();
                     StartCooldown();
@@ -57,6 +61,9 @@ namespace Abilities
                 if (Input.GetMouseButtonDown(1))
                 {
                     // cancel on right click
+                    directionIndicator.SetActive(false);
+                    image.enabled = false;
+                    State = AbilityStates.Ready;
                     break;
                 }
             

@@ -27,6 +27,7 @@ public class ParticlesOnDeath : MonoBehaviour
             return;
         var x = Instantiate(effect);
         x.transform.position = transform.position;
+        ButtonPressSIngleton.playButtonClick();
     }
 
     private void OnApplicationQuit() {

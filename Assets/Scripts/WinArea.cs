@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WinArea : MonoBehaviour
 {
+    public static bool winning = true;
     Collider2D winTrigger;
     bool win = false;
     GameObject winningObject;
@@ -12,6 +13,7 @@ public class WinArea : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        winning = false;
         winTrigger = GetComponent<Collider2D>();
     }
 
@@ -34,6 +36,7 @@ public class WinArea : MonoBehaviour
 
 
     IEnumerator onWin() {
+        winning = true;
         foreach (var foe in GameObject.FindGameObjectsWithTag("Opponent"))
             Destroy(foe);
 
@@ -53,7 +56,7 @@ public class WinArea : MonoBehaviour
         winningObject.GetComponent<RandomSplit>().TimeBeforeNewSplit = 0.3f;
         node.Flower.SetActive(true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("VictoryScene");
     }
 }

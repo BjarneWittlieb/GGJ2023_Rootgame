@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5237077097262455630}
   - component: {fileID: 311568364542858095}
   - component: {fileID: -2793703375353079710}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DynamicWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

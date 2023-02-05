@@ -117,13 +117,13 @@ public class RootDrawer : MonoBehaviour
         if(startNode.rootCirlce) startNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.startWidth * 0.7f;
         if (endNode.rootCirlce) endNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.endWidth * 0.7f;
 
-        {
-            RootNode current = endNode;
-            while(current != startNode) {
-                current.lengthFromTip = endNode.lengthFromTip;
-                current = current.Parent;
-            }
-        }
+        //{
+        //    RootNode current = endNode;
+        //    while(current != startNode) {
+        //        current.lengthFromTip = endNode.lengthFromTip;
+        //        current = current.Parent;
+        //    }
+        //}
 
         if (onlyAdjustWidth) return;
 

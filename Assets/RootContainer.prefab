@@ -389,6 +389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootDrawer
       objectReference: {fileID: 0}
+    - target: {fileID: 9151429668748256635, guid: 6f898e30b3b7f6746b3ea1b54b71f2c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9151429668748256636, guid: 6f898e30b3b7f6746b3ea1b54b71f2c1, type: 3}
       propertyPath: m_RootOrder
       value: 1

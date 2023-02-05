@@ -517,13 +517,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6d722d3ca54c868612726d1ba93a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 5
-  CooldownTimeLeft: 1
+  Cooldown: 10
+  CooldownTimeLeft: 10
   RequiredResource: {fileID: 0}
   ResourceCost: 0
   AbilityIcon: {fileID: 0}
   Name: 
-  Code: 50
+  Code: 49
   audio: {fileID: 3650353613491734079}
   directionIndicator: {fileID: 6102928572802956447}
 --- !u!1 &6327846743901477858
@@ -652,13 +652,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ba9efecc1746b59bba8678996927c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 1
-  CooldownTimeLeft: 1
+  Cooldown: 30
+  CooldownTimeLeft: 30
   RequiredResource: {fileID: 0}
   ResourceCost: 0
   AbilityIcon: {fileID: 0}
   Name: 
-  Code: 49
+  Code: 50
   audio: {fileID: 3439843627255592710}
   directionIndicator: {fileID: 6102928572802956447}
 --- !u!1 &7686777509384818274

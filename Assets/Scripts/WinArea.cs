@@ -49,11 +49,11 @@ public class WinArea : MonoBehaviour
         tip.IsTip = true;
         winningObject.GetComponent<RootInfluence>().enabled = false;
         winningObject.GetComponent<RandomWalk>().gravity = new Vector2(0, 0.1f);
-        winningObject.GetComponent<RandomSplit>().chancheBranch = 0.03f;
+        winningObject.GetComponent<RandomSplit>().createBranchChance = 0.03f;
         winningObject.GetComponent<RandomSplit>().TimeBeforeNewSplit = 0.3f;
         node.Flower.SetActive(true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(8);
         SceneManager.LoadScene("VictoryScene");
     }
 }

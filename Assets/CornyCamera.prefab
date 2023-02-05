@@ -627,6 +627,10 @@ PrefabInstance:
       propertyPath: marker
       value: 
       objectReference: {fileID: 3168082588442388272}
+    - target: {fileID: 9014087276802843233, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e30498ad51423a54cb20bfbba516b401, type: 3}
 --- !u!4 &603158326704967419 stripped

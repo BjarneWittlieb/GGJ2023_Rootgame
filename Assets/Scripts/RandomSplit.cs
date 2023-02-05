@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(IsRootTip))]
 public class RandomSplit : MonoBehaviour
 {
-    public  float chancheBranch = 0.001f;
+    public  float createBranchChance = 0.001f;
     public float TimeBeforeNewSplit = 5;
 
     private RootNode node;
@@ -23,7 +23,7 @@ public class RandomSplit : MonoBehaviour
     void FixedUpdate() {
         if (sinceExistence + TimeBeforeNewSplit > Time.time)
             return;
-        if (!tip.IsTip && !node.IsDead && Random.value < chancheBranch)
+        if (!tip.IsTip && !node.IsDead && Random.value < createBranchChance)
             tip.IsTip = true;
     }
 }

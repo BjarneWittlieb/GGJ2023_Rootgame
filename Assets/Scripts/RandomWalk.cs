@@ -15,11 +15,23 @@ public class RandomWalk : MonoBehaviour {
     private IsRootTip tip;
     private RootNode node;
 
-    private bool currentRotation = false;
+    public float probabilityOfDirectionModifier = .2f;
+
+    private bool isRotatingRight = false;
+    /// <summary>
+    /// Is either -rotationSpeed or +rotationSpeed
+    /// </summary>
     private float currentAngle = 0;
     private float currentDistance = 0;
     private bool isSplitting = false;
+    
+    /// <summary>
+    /// The general direction in which the node will grow.
+    /// If empty the node will grow completely random.
+    /// </summary>
+    public Vector2 generalDirection = Vector2.left;
 
+    public bool growInGeneralDirection = true;
 
     float sinceWallIssue;
     bool hasWallIssue = false;
@@ -29,7 +41,7 @@ public class RandomWalk : MonoBehaviour {
     {
         tip  = GetComponent<IsRootTip>();
         node = GetComponent<RootNode>();
-        currentRotation = Random.value < 0.5;
+        isRotatingRight = Random.value < getProbabilityOfTurningRight();
         currentDistance = 0;
         node.OnSplit += splitting;
         if (!node.Parent)
@@ -39,8 +51,48 @@ public class RandomWalk : MonoBehaviour {
     void splitting() {
         currentDistance = tip.SplitDistance / 2;
         isSplitting = false;
-        currentRotation = Random.value < 0.5;
+        isRotatingRight = Random.value < getProbabilityOfTurningRight();
         currentAngle = 0;
+    }
+
+    /// <summary>
+    /// Returns the probabilty to turn right depending on the generalDirection vector
+    /// </summary>
+    /// <returns></returns>
+    private float getProbabilityOfTurningRight()
+    {
+        if (!growInGeneralDirection)
+        {
+            return .5f;
+        }
+
+        float differenceOnLeftTurn = (getTargetDirection(-RotationSpeed).normalized - generalDirection.normalized).magnitude;
+        float differenceOnRightTurn = (getTargetDirection(RotationSpeed).normalized - generalDirection.normalized).magnitude;
+        return .5f + Mathf.Sign(differenceOnLeftTurn - differenceOnRightTurn) * probabilityOfDirectionModifier;
+    }
+
+    private Vector2 getParentDirection()
+    {
+        Vector2 parentDirection = new Vector2(0, 1);
+        bool hasDir = node.Parent.Parent;
+        Vector2 parentPosition = node.Parent.transform.position;
+        Vector2 parentParentPosition = parentPosition;
+        if (node.Parent.Parent)
+            parentParentPosition = node.Parent.Parent.transform.position;
+        if (node.IntermediatePoints.Count >= 1)
+        {
+            parentPosition = node.IntermediatePoints[node.IntermediatePoints.Count - 1];
+            parentParentPosition = node.Parent.transform.position;
+            hasDir = true;
+        }
+        if (node.IntermediatePoints.Count >= 2)
+        {
+            parentParentPosition = node.IntermediatePoints[node.IntermediatePoints.Count - 2];
+            hasDir = true;
+        }
+        if (hasDir)
+            parentDirection = (parentPosition - parentParentPosition).normalized;
+        return parentDirection;
     }
 
     // Update is called once per frame
@@ -70,37 +122,27 @@ public class RandomWalk : MonoBehaviour {
             }
 
         }
-        transform.position = getTargetPosition();
+        transform.position = getTargetPosition(currentAngle);
         
-        if (currentAngle < -rotationRange && !currentRotation)
-            currentRotation = true;
-        if (currentAngle > rotationRange && currentRotation)
-            currentRotation = false;
-        currentAngle += (currentRotation ? 1 : -1) * RotationSpeed;
+        if (currentAngle < -rotationRange && !isRotatingRight)
+            isRotatingRight = true;
+        if (currentAngle > rotationRange && isRotatingRight)
+            isRotatingRight = false;
+        currentAngle += (isRotatingRight ? 1 : -1) * RotationSpeed;
         currentDistance = currentDistance * (1- walkSpeed) + tip.SplitDistance * (isSplitting?1.1f:0.9f) * walkSpeed;
 
     }
 
-    Vector2 getTargetPosition() {
-        Vector2 parentDir = new Vector2(0, 1);
-        bool hasDir = node.Parent.Parent;
+    private Vector2 getTargetDirection(float rotationAngle)
+    {
+        Vector2 parentDirection = getParentDirection();
+        float parentAngleOfDirection = Mathf.Deg2Rad * Vector2.SignedAngle(new Vector2(1, 0), parentDirection);
+        return new Vector2(Mathf.Cos(rotationAngle + parentAngleOfDirection), Mathf.Sin(rotationAngle + parentAngleOfDirection)).normalized * currentDistance + gravity;
+    }
+
+    Vector2 getTargetPosition(float rotationAngle) {
         Vector2 parentPosition = node.Parent.transform.position;
-        Vector2 parentParentPosition = parentPosition;
-        if (node.Parent.Parent)
-            parentParentPosition = node.Parent.Parent.transform.position;
-        if (node.IntermediatePoints.Count >= 1) {
-            parentPosition = node.IntermediatePoints[node.IntermediatePoints.Count - 1];
-            parentParentPosition = node.Parent.transform.position;
-            hasDir = true;
-        }
-        if (node.IntermediatePoints.Count >= 2) {
-            parentParentPosition = node.IntermediatePoints[node.IntermediatePoints.Count - 2];
-            hasDir = true;
-        }
-        if (hasDir)
-            parentDir = (parentPosition - parentParentPosition).normalized;
-        var v = Mathf.Deg2Rad * Vector2.SignedAngle(new Vector2(1,0), parentDir);
-        Vector2 movementDir = new Vector2(Mathf.Cos(currentAngle + v), Mathf.Sin(currentAngle + v)).normalized * currentDistance + gravity;
+        Vector2 movementDir = getTargetDirection(rotationAngle);
         return parentPosition + movementDir;
     }
 

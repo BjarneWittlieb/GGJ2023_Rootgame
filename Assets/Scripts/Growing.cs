@@ -61,7 +61,13 @@ public class Growing : MonoBehaviour
         parent.Children.Remove(node);
         Transform basket = (GameObject.Find("RootBasket")? GameObject.Find("RootBasket").transform:null);
         var newNodeObj = Instantiate(transform.gameObject, basket);
-        
+
+
+        //cleanup line renderer
+        var renderer = newNodeObj.GetComponentsInChildren<LineRenderer>();
+        foreach (var x in renderer)
+            if (!x.GetComponent<RootNode>())
+                Destroy(x.gameObject);
 
         var newNode = newNodeObj.GetComponent<RootNode>();
         var newTip = newNodeObj.GetComponent<IsRootTip>();
@@ -86,6 +92,13 @@ public class Growing : MonoBehaviour
         parent.Children.Remove(Me);
         Transform basket = (GameObject.Find("RootBasket") ? GameObject.Find("RootBasket").transform : null);
         var newNodeObj = Instantiate(transform.gameObject, basket);
+
+        //cleanup line renderer
+        var renderer = newNodeObj.GetComponentsInChildren<LineRenderer>();
+        foreach (var x in renderer)
+            if (!x.GetComponent<RootNode>())
+              Destroy(x.gameObject);
+
         var newNode = newNodeObj.GetComponent<RootNode>();
         newNodeObj.GetComponent<IsRootTip>().IsTip = false;
         newNode.Children = new List<RootNode>();       

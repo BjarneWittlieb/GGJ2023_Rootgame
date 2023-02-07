@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 [RequireComponent(typeof(RootNode))]
@@ -74,17 +75,29 @@ public class Growing : MonoBehaviour
         newTip.IsTip = false;
         newNode.Children = node.Children;
         newNode.lineRenderer = null;
-        foreach (var x in node.Children)
+        foreach (var x in node.Children) {
+            x.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
             x.Parent = newNode;
+            x.lengthFromTip = getLen(x);
+        }
         newNode.Parent = parent;
         newNode.IntermediatePoints = node.IntermediatePoints;
+        newNode.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
+        parent.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
         node.IntermediatePoints = new List<Vector2>();
         parent.Children.Add(newNode);
         newNode.Children.Add(node);
         node.Parent = newNode;
         node.Children = new List<RootNode>();
-        if(node.rootCirlce) node.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
+        if(node.rootCirlce)
+            node.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
         node.OnSplit();
+        node.lengthFromTip = 0;
+
+
+        if (newNode.lengthFromTip == 0) {
+            newNode.lengthFromTip = getLen(newNode);
+        }
     }
 
     void split(RootNode Me) {
@@ -97,11 +110,13 @@ public class Growing : MonoBehaviour
         var renderer = newNodeObj.GetComponentsInChildren<LineRenderer>();
         foreach (var x in renderer)
             if (!x.GetComponent<RootNode>())
-              Destroy(x.gameObject);
+              Destroy(x.gameObject);        
 
-        var newNode = newNodeObj.GetComponent<RootNode>();
+        var newNode = newNodeObj.GetComponent<RootNode>();        
         newNodeObj.GetComponent<IsRootTip>().IsTip = false;
-        newNode.Children = new List<RootNode>();       
+        newNode.Children = new List<RootNode>();
+        newNode.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
+        parent.rootCirlce.transform.localScale = new Vector3(0, 0, 0);
         newNode.lineRenderer = null;
         newNode.Parent = parent;
         parent.Children.Add(newNode);
@@ -119,6 +134,15 @@ public class Growing : MonoBehaviour
     void lazySplit() {        
         node.IntermediatePoints.Add((transform.position + getPreviousPos()) / 2);
         node.OnSplit();
+    }
+
+    float getLen(RootNode r) {
+        float result = 0;
+        foreach (var x in r.Children)
+            result = Mathf.Max(result, getLen(x));
+        if (r.Parent)
+            result += (r.transform.position - r.Parent.transform.position).magnitude;
+        return result;
     }
 
     Vector3 getPreviousPos() {

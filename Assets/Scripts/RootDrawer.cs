@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RootDrawer : MonoBehaviour
 {
@@ -30,13 +32,16 @@ public class RootDrawer : MonoBehaviour
             widthModifierStatic = widthModifier;
             //theMostParentParent.UpdateCurrentLength();
             DrawNewTree();
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
     public void DrawNewTree()
     {
-        DrawRootNode(theMostParentParent);
+        foreach (var x in GameObject.FindObjectsOfType<RootNode>())
+            if (x.Parent == null)
+                DrawRootNode(x);
+        //DrawRootNode(theMostParentParent);
     }
 
     private float GetLongestPathLength(RootNode rootNode)
@@ -110,12 +115,19 @@ public class RootDrawer : MonoBehaviour
         }
 
         startNode.lengthFromTip = endNode.lengthFromTip + GetLengthOfPath(vecs);
+
+        float bestLen = 0;
+        foreach (var x in endNode.Children)
+            bestLen = Mathf.Max(bestLen, x.lengthFromTip);
+
         lineRenderer.startWidth = CalculateWidth(startNode.lengthFromTip);
-        lineRenderer.endWidth = CalculateWidth(endNode.lengthFromTip);
-        
-        
-        if(startNode.rootCirlce) startNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.startWidth * 0.7f;
-        if (endNode.rootCirlce) endNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.endWidth * 0.7f;
+        lineRenderer.endWidth = CalculateWidth(bestLen);
+
+
+        if (startNode.rootCirlce && endNode.Children.Count == 0)
+            startNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * 0;// lineRenderer.startWidth;
+        if (endNode.rootCirlce)
+            endNode.rootCirlce.transform.localScale = new Vector3(1, 1, 1) * lineRenderer.endWidth;
 
         //{
         //    RootNode current = endNode;

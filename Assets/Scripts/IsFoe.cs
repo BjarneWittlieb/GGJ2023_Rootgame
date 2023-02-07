@@ -17,27 +17,28 @@ public class IsFoe : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //try
-        //{
-            if (collision.gameObject.tag.Equals("Root"))
-            {
+    void OnCollisionEnter2D(Collision2D collision) {
+        exterminate(collision);
 
-                if (collision.gameObject.GetComponent<RootAttack>().isCharging() || RootAttack.attacking)
-                    return;
+    }
+    void OnCollisionStay2D(Collision2D collision) {
+        exterminate(collision);
+    }
 
-                foreach (var x in collision.gameObject.GetComponent<RootNode>().Children)
-                    x.Parent = null;
-                if (collision.gameObject.GetComponent<RootNode>().Parent != null)
-                    collision.gameObject.GetComponent<RootNode>().Parent.Children.Remove(collision.gameObject.GetComponent<RootNode>());
-                Destroy(collision.gameObject);
-               if (soundeffect)
-                   soundeffect.Play();
-            }
-        //}
-        //catch (System.Exception e) 
-        //{ }
 
+    void exterminate(Collision2D collision) {
+        if (collision.gameObject.tag.Equals("Root")) {
+
+            if (collision.gameObject.GetComponent<RootAttack>().isCharging() || RootAttack.attacking)
+                return;
+
+            foreach (var x in collision.gameObject.GetComponent<RootNode>().Children)
+                x.Parent = null;
+            if (collision.gameObject.GetComponent<RootNode>().Parent != null)
+                collision.gameObject.GetComponent<RootNode>().Parent.Children.Remove(collision.gameObject.GetComponent<RootNode>());
+            Destroy(collision.gameObject);
+            if (soundeffect)
+                soundeffect.Play();
+        }
     }
 }

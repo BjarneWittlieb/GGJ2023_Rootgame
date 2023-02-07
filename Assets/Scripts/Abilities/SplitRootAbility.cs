@@ -77,8 +77,8 @@ namespace Abilities
                 if (currentTarget.GetComponent<IsRootTip>()) {
                     currentTarget.GetComponent<IsRootTip>().IsTip                  =  true;
                     currentTarget.GetComponent<RootNode>().IsDead                  =  false;
-                    currentTarget.GetComponent<RootInfluence>().TipDeadOnInfluence *= 2;
                     currentTarget.GetComponent<Growing>().branch();
+                    currentTarget.GetComponent<RootInfluence>().temporaryDisable(10);
 
                     Vector3 mouseP = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     mouseP.z = currentTarget.transform.position.z;
@@ -88,7 +88,6 @@ namespace Abilities
             }
             directionIndicator.SetActive(false);
         }
-        
-       
+
     }
 }

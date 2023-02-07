@@ -12,6 +12,7 @@ public class RootInfluence : MonoBehaviour
 
     private RootNode node;
     private IsRootTip tip;
+    float disabledUntil = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -21,18 +22,23 @@ public class RootInfluence : MonoBehaviour
         StartCoroutine(customUpdate());
     }
 
+    public void temporaryDisable(float seconds) {
+        disabledUntil = Time.time + seconds;
+    }
 
     IEnumerator customUpdate() {
         while (true) {
-            currentInfluence = 0;
-            foreach (var x in Physics2D.OverlapCircleAll(transform.position, influenceField.radius))
-                if (LayerMask.LayerToName(x.gameObject.layer) == "RootInfluence")
-                    currentInfluence++;
+            if (Time.time > disabledUntil) {
+                currentInfluence = 0;
+                foreach (var x in Physics2D.OverlapCircleAll(transform.position, influenceField.radius))
+                    if (LayerMask.LayerToName(x.gameObject.layer) == "RootInfluence")
+                        currentInfluence++;
 
-            if ((tip.IsTip && currentInfluence > TipDeadOnInfluence) ||
-                (!tip.IsTip && currentInfluence > DeadOnInfluence)
-                )
-                node.IsDead = true;
+                if ((tip.IsTip && currentInfluence > TipDeadOnInfluence) ||
+                    (!tip.IsTip && currentInfluence > DeadOnInfluence)
+                    )
+                    node.IsDead = true;
+            }
             yield return new WaitForSeconds(0.21f);
         }
     }

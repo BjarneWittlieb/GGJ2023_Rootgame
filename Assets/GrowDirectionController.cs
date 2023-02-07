@@ -7,7 +7,8 @@ public class GrowDirectionController : MonoBehaviour
     public  float      influenceMinValue = 0.05f;
     public  float      influenceMaxValue = .2f;
     public  float      defaultWalkSpeed  = .5f;
-    
+    public GameObject influenceMarker;
+
     private RandomWalk randomWalk;
     
 
@@ -28,13 +29,25 @@ public class GrowDirectionController : MonoBehaviour
             return;
         var mousePos = stamina.cursor.marker.transform.position;
 
-        if ((mousePos - transform.position).magnitude > stamina.InfluenceRadius)
+        float dist = (mousePos - transform.position).magnitude;
+
+        if (influenceMarker && (dist > stamina.InfluenceRadius || !GetComponent<IsRootTip>().IsTip))
+            influenceMarker.SetActive(false);
+
+
+        if (dist > stamina.InfluenceRadius)
         {
             randomWalk.growInGeneralDirection = false;
             randomWalk.walkSpeed              = defaultWalkSpeed;
             return;
         }
 
+        if (influenceMarker && GetComponent<IsRootTip>().IsTip) {
+            influenceMarker.SetActive(true);
+            Color clr = influenceMarker.GetComponent<SpriteRenderer>().color;
+            float perc = (1-(dist / stamina.InfluenceRadius)) * 0.2f;
+            influenceMarker.GetComponent<SpriteRenderer>().color = new Color(clr.r, clr.g, clr.b,perc);
+        }
         var position     = transform.position;
         var targetVector = mousePos - position;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IsFoe : MonoBehaviour
 {
-    public AudioSource soundeffect;
+    public GameObject attackSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +37,8 @@ public class IsFoe : MonoBehaviour
             if (collision.gameObject.GetComponent<RootNode>().Parent != null)
                 collision.gameObject.GetComponent<RootNode>().Parent.Children.Remove(collision.gameObject.GetComponent<RootNode>());
             Destroy(collision.gameObject);
-            if (soundeffect)
-                soundeffect.Play();
+            if (attackSound)
+                Instantiate(attackSound);
         }
     }
 }

@@ -51,7 +51,8 @@ namespace Abilities
                 {
                     image.enabled = false;
                     Split(currentTarget);
-                    audio.Play();
+                    if (audio)
+                        Instantiate(audio);
                     StartCooldown();
                     break;
                 }

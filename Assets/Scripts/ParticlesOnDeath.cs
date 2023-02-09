@@ -7,7 +7,7 @@ public class ParticlesOnDeath : MonoBehaviour
     
     [SerializeField] private GameObject effect;
 
-    [SerializeField] public AudioClip deathSound;
+    [SerializeField] public GameObject deathSound;
     
     AudioSource _audioSource;
 
@@ -29,9 +29,9 @@ public class ParticlesOnDeath : MonoBehaviour
         if (isQuitting)
             return;
         var x = Instantiate(effect);
-        effect.GetComponent<AudioSource>().Play();
+        if (deathSound)
+            Instantiate(deathSound);
         x.transform.position = transform.position;
-        ButtonPressSIngleton.playButtonClick();
     }
 
     private void OnApplicationQuit() {

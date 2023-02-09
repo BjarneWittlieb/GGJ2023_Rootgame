@@ -72,7 +72,8 @@ namespace Abilities
             {
                 
                 rootAttack.attack(picker.marker.transform.position);
-                audio.Play();
+                if (audio)
+                    Instantiate(audio);
                 StartCooldown();
             }
             directionIndicator.SetActive(false);

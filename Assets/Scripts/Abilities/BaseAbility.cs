@@ -16,7 +16,7 @@ namespace Abilities
         public Image         AbilityIcon;
         [SerializeField] public string        Name;
         [SerializeField] public KeyCode Code;
-        [SerializeField] public AudioSource audio;
+        [SerializeField] public GameObject audio;
 
         public AbilityStates State { get; set; }
 

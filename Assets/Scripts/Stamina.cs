@@ -14,6 +14,7 @@ namespace DefaultNamespace
         public int        drainRate  = 10;
         public float      maxStamina = 100f;
         public NodePicker cursor;
+        public GameObject fastGrowingAudio;
 
         [FormerlySerializedAs("mouseInfluenceRadius")] 
         public float baseInfluenceRadius = 3f;
@@ -54,12 +55,14 @@ namespace DefaultNamespace
             InfluenceRadius = baseInfluenceRadius;
             SpeedMultiplier = 1f;
 
+            if (Input.GetMouseButtonDown(0) && fastGrowingAudio)
+                Instantiate(fastGrowingAudio);
             if (Input.GetMouseButton(0))
             {
                 if (TryDrain(drainRate))
                 {
                     InfluenceRadius *= onChargeRadiusMultiplier;
-                    SpeedMultiplier *= onChargeSpeedMultiplier;
+                    SpeedMultiplier *= onChargeSpeedMultiplier;                    
                 }
             }
 
